@@ -1,0 +1,62 @@
+"use client";
+
+import { useFrame, useThree } from "@react-three/fiber";
+import { RefObject, useRef } from "react";
+import {
+  BufferGeometry,
+  Group,
+  Mesh,
+  NormalBufferAttributes,
+  Object3DEventMap,
+} from "three";
+
+export default function Cube(props: {
+  size: number;
+  ref?: RefObject<Mesh<BufferGeometry<NormalBufferAttributes>> | null>;
+  groupRef?: RefObject<Group<Object3DEventMap> | null>;
+  isFloating?: RefObject<boolean>;
+}) {
+  const mesh = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
+  const { viewport } = useThree();
+
+  const floatSpeed = 1.2;
+  const floatAmplitude = 0.2;
+  const d = useRef<number>(0);
+
+  useFrame((state, delta) => {
+    const ref = props.ref ? props.ref : mesh;
+    if (!ref.current) return;
+
+    ref.current.rotation.y += 0.2 * delta;
+    ref.current.rotation.z += 0.2 * delta;
+
+    if (!props.isFloating) return;
+
+    const floatOffset = Math.sin(d.current * floatSpeed) * floatAmplitude;
+
+    if (props.isFloating.current) {
+      d.current += 1 * delta;
+      d.current %= 360;
+      ref.current.position.y = floatOffset;
+    } else {
+      d.current = 0;
+    }
+  });
+
+  return (
+    <group ref={props.groupRef} scale={viewport.width / 7}>
+      <mesh ref={props.ref ? props.ref : mesh} scale={[1, 1, 1]}>
+        <boxGeometry />
+        <meshPhysicalMaterial
+          metalness={1}
+          roughness={0.01}
+          reflectivity={1}
+          clearcoat={1}
+          clearcoatRoughness={0}
+          color="white"
+          toneMapped={false}
+        />
+      </mesh>
+    </group>
+  );
+}
