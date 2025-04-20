@@ -1,21 +1,178 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* ------------------------- Variables ------------------------------------------- */
+@theme {
+  --color-background: oklch(0.985 0 0);
+  --color-dark-background: oklch(0.922 0 0);
+  --color-foreground: oklch(0.147 0.004 49.25);
+  --color-accent: #95614e;
+  --spacing: 0.25em;
+}
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gap: 2em;
+  --section-padding: calc(3.5em + (var(--gap) * 2));
+  --container-padding: 2em;
+  --header-height: calc(1.5em + (var(--gap) * 2));
+  --footer-height: calc(2.785em + (var(--gap) * 2));
+
+  --text-xs: 0.75em;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 0.875em;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1em;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.125em;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25em;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl: 1.5em;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875em;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25em;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 3em;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75em;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5em;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6em;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8em;
+  --text-9xl--line-height: 1;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Tablet */
+@media screen and (max-width: 1023px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --container-padding: 1.5em;
+  }
+}
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --container-padding: 1em;
+    --section-padding: calc(var(--gap) * 2);
+  }
+}
+/* Mobile Portrait */
+@media screen and (max-width: 639px) {
+  :root {
+  }
+}
+/* ------------------------- Scaling System -------------------------  */
+/* Desktop */
+:root {
+  --size-unit: 16;
+  --size-container-ideal: 1440;
+  --size-container-min: 1024px;
+  --size-container-max: 1920px;
+  --size-container: clamp(
+    var(--size-container-min),
+    100vw,
+    var(--size-container-max)
+  );
+  --size-font: calc(
+    var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
+  );
+}
+/* Tablet */
+@media screen and (max-width: 1023px) {
+  :root {
+    --size-container-ideal: 834;
+    --size-container-min: 768px;
+    --size-container-max: 1023px;
+  }
+}
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 750;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+/* Mobile Portrait */
+@media screen and (max-width: 639px) {
+  :root {
+    --size-container-ideal: 500;
+    --size-container-min: 0px;
+    --size-container-max: 639px;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-foreground);
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 250, 1) 0%,
+    rgba(223, 223, 222, 1) 100%
+  );
+  font-weight: 300;
+  font-size: var(--size-font);
+}
+
+.gradient-bg {
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 250, 1) 0%,
+    rgba(223, 223, 222, 1) 100%
+  );
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-highlight);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.container {
+  max-width: var(--size-container);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container.is-full {
+  max-width: 100%;
+}
+
+.container.is-md {
+  max-width: calc(var(--size-container) * 0.9);
+}
+
+.container.is-sm {
+  max-width: calc(var(--size-container) * 0.8);
+}
+
+@media screen and (max-width: 1023px) {
+  .container.is-md,
+  .container.is-sm {
+    max-width: calc(var(--size-container) * 1);
+  }
 }

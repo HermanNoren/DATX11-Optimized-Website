@@ -1,0 +1,127 @@
+.top-text {
+  font-size: 23px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 20px;
+  color: rgb(40, 40, 40);
+}
+.checkout-page {
+  background-color: rgb(255, 252, 249);
+  min-height: 49rem;
+}
+
+.checkout-bag {
+  font-size: 3rem;
+  color: rgb(40, 40, 40);
+  font-weight: 300;
+}
+
+.checkout-text {
+  font-size: 1.5rem;
+  color: rgb(40, 40, 40);
+  font-weight: 300;
+  text-align: center;
+}
+
+.checkout-line {
+  width: 1250px;
+  height: 1px;
+  margin-top: -30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 70px;
+}
+
+.add-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  border-color: #6f472a;
+  margin-top: 4rem;
+}
+
+.add-buttons button {
+  padding: 8px 16px;
+  border: 1px solid #b5b2b2;
+  cursor: pointer;
+  color: rgb(35, 25, 25);
+  border-radius: 16px;
+}
+
+.add-buttons button:disabled {
+  background-color: #cd9e7c;
+  cursor: not-allowed;
+  border-radius: 16px;
+}
+
+.add-buttons button:hover {
+  border-color: #0c0b0b;
+}
+
+.checkout-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.checkout-product-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  width: 100%;
+  align-items: center;
+}
+
+.checkout-button {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  padding: 0.8rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background-color: #9b7860;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.checkout-button:hover {
+  background: #f2ceb4;
+  transition: background-color 0.2s ease;
+}
+
+.bottom-text {
+  font-size: 14px;
+  color: rgb(40, 40, 40);
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.checkout-navbar-icons {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.checkout-price {
+  width: 120px;
+  font-size: 22px;
+  color: rgb(40, 40, 40);
+  text-align: right;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+}
