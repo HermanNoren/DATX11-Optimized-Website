@@ -2,36 +2,31 @@
 
 export default function AboutTitle() {
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
-      {/* Background Video */}
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/cubeOnStandAbout.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <section className="relative w-full overflow-hidden p-[6em] ">
+      {/* Video Container */}
+      <div className="relative w-full max-w-3xl mx-auto aspect-video overflow-hidden">
+        {/* Video */}
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/cubeOnStandAbout.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      {/* Left Vertical Text */}
-      <div className="absolute left-2 top-1/2 -translate-y-1/2 writing-vertical text-white text-xs tracking-widest z-10 rotate-180">
-        CUBE/KUB/CUBO/KUUTIO/立方体
+        {/* Title -deCube- at bottom center */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 pb-[0em]">
+          <h1 className="text-white text-[4em] sm:text-[7em] text-9xl font-medium text-center leading-none tracking-wide whitespace-nowrap">
+            -deCube-
+          </h1>
+        </div>
       </div>
 
-      {/* Right Vertical Text */}
-      <div className="absolute right-2 top-1/2 -translate-y-1/2 writing-vertical text-white text-xs tracking-widest z-10">
-        CUBE/KUB/CUBO/KUUTIO/立方体
-      </div>
-
-      {/* Main Title */}
-      <h1 className="z-10 text-white text-6xl sm:text-7xl font-light tracking-wide text-center">
-        -de<span className="font-semibold">Cube</span>-
-      </h1>
-
-      {/* Subtitle */}
-      <p className="z-10 mt-8 text-white text-sm sm:text-lg tracking-wide text-center">
+      {/* Subtitle below the video */}
+      <p className="mt-[0.5em] text-center text-black text-[1em] sm:text-[1.5em] tracking-wide">
         A COMPANY THAT SPEAKS VOLUMES
       </p>
     </section>
