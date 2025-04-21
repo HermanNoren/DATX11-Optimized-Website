@@ -1,5 +1,5 @@
-import CTA from "./_components/CTA";
-import SlideText from "./_components/SlideText";
+import CTA from "./CTA";
+import SlideText from "./SlideText";
 
 export default function Footer() {
   return (
