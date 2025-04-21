@@ -8,10 +8,12 @@ import {
   Mesh,
   NormalBufferAttributes,
   Object3DEventMap,
+  Vector3,
 } from "three";
 
 export default function Cube(props: {
-  size: number;
+  size?: number;
+  position?: Vector3 | [number, number, number];
   ref?: RefObject<Mesh<BufferGeometry<NormalBufferAttributes>> | null>;
   groupRef?: RefObject<Group<Object3DEventMap> | null>;
   isFloating?: RefObject<boolean>;
@@ -45,7 +47,11 @@ export default function Cube(props: {
 
   return (
     <group ref={props.groupRef} scale={viewport.width / 7}>
-      <mesh ref={props.ref ? props.ref : mesh} scale={[1, 1, 1]}>
+      <mesh
+        ref={props.ref ? props.ref : mesh}
+        scale={props.size ? props.size : 1}
+        position={props.position ?? [0, 0, 0]}
+      >
         <boxGeometry />
         <meshPhysicalMaterial
           metalness={1}

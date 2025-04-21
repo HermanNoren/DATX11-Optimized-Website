@@ -10,10 +10,12 @@ import {
   Mesh,
   NormalBufferAttributes,
   Object3DEventMap,
+  Vector3,
 } from "three";
 
 export default function CubeScene(props: {
   cubeSize?: number;
+  cubePosition?: Vector3 | [number, number, number];
   cubeRef?: RefObject<Mesh<BufferGeometry<NormalBufferAttributes>> | null>;
   groupRef?: RefObject<Group<Object3DEventMap> | null>;
   isFloating?: RefObject<boolean>;
@@ -21,12 +23,13 @@ export default function CubeScene(props: {
   return (
     <Canvas camera={{ fov: 45 }}>
       <Cube
-        size={props.cubeSize ? props.cubeSize : 1}
+        size={props.cubeSize}
+        position={props.cubePosition}
         ref={props.cubeRef}
         groupRef={props.groupRef}
         isFloating={props.isFloating}
       />
-      <Environment /*files="/skybox.exr"*/ preset="studio" />
+      <Environment preset="studio" />
     </Canvas>
   );
 }
