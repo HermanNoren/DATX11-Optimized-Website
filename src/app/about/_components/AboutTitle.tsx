@@ -2,7 +2,7 @@
 
 export default function AboutTitle() {
   return (
-    <section className="relative w-full overflow-hidden p-[6em] ">
+    <section className="relative w-full overflow-hidden p-[10em] ">
       {/* Video Container */}
       <div className="relative w-full max-w-3xl mx-auto aspect-video overflow-hidden">
         {/* Video */}
