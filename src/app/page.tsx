@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <CubeShowcase/>
-      <CubeSizes/>
-      <Astrolight/>
-      <Footer/>
+      <CubeShowcase />
+      <CubeSizes />
+      <Astrolight />
+      <Footer />
     </>
   );
 }
