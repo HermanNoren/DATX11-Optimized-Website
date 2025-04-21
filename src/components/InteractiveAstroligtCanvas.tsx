@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Engine,
   Render,
@@ -12,6 +12,8 @@ import {
 } from "matter-js";
 
 export default function InteractiveAstrolightCanvas() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   function initFalling2DMatterJS() {
     const canvas = document.querySelector<HTMLDivElement>("#canvas-target");
 
@@ -137,7 +139,22 @@ export default function InteractiveAstrolightCanvas() {
   }
 
   useEffect(() => {
-    initFalling2DMatterJS();
+    const el = containerRef.current;
+    if (!el) return;
+
+    // when this element scrolls into view, run init once
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          initFalling2DMatterJS();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -146,6 +163,10 @@ export default function InteractiveAstrolightCanvas() {
       <div
         id="canvas-target"
         className="absolute top-0 left-0 w-full h-full overflow-hidden transform-[scale3d(1none,_1none,_1none)] transform-3d"
+      ></div>
+      <div
+        ref={containerRef}
+        className="absolute bottom-0 left-0 w-full h-[75vh]"
       ></div>
     </div>
   );

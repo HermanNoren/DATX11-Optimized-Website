@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Astrolight() {
   return (
-    <section className="relative w-screen h-lvh">
-      <div className="absolute inset-0">
+    <section className="relative w-screen h-lvh gradient-bg z-10">
+      <div className="absolute inset-0 overflow-hidden">
         <InteractiveAstrolightCanvas />
       </div>
       <div className="relative w-full h-full container grid place-items-center pointer-events-none">
