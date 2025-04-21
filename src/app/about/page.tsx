@@ -6,6 +6,7 @@ import ScrollRevealText from "./_components/ScrollRevealText";
 import ParallaxImageSection from "./_components/parallaxImageSection";
 import RecievingProduct from "./_components/RecievingProduct";
 import CeoQuote from "./_components/CeoQuote";
+import Footer from "@/components/footer/Footer";
 
 export default function AboutPage() {
     return (
@@ -15,6 +16,7 @@ export default function AboutPage() {
         <ParallaxImageSection/>
         <RecievingProduct/>
         <CeoQuote/>
+        <Footer/>
       </section>
     );
 }
