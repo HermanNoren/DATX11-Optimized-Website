@@ -18,7 +18,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="absolute inset-0">
+    <header className="absolute inset-0 z-20">
       <nav className="w-full container is-full pt-[var(--container-padding)] flex justify-between text-xl">
         <Link href="/" className="flex gap-2">
           <Boxes strokeWidth={1} className="size-6" />
