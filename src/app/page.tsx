@@ -8,10 +8,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <CubeShowcase/>
+      <div className="w-screen h-screen"></div>
+      {/*
+            <CubeShowcase/>
       <CubeSizes/>
       <Astrolight/>
       <Footer/>
+      */}
     </>
   );
 }

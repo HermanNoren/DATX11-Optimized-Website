@@ -60,6 +60,7 @@
   --color-background: oklch(0.985 0 0);
   --color-dark-background: oklch(0.922 0 0);
   --color-foreground: oklch(0.147 0.004 49.25);
+  --color-gray-accent: oklch(92% 0.004 286.32);
   --color-accent: #95614e;
   --spacing: 0.25em;
   --spacing-container-padding: 2em;
