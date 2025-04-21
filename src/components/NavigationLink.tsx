@@ -14,6 +14,8 @@ type NavLinkProps = {
   text: string;
   href: string;
   target?: string;
+  textClassName?: string;
+  onClick?: () => void;
 };
 
 export default function NavigationLink({
@@ -23,11 +25,23 @@ export default function NavigationLink({
   className,
   href,
   target,
+  textClassName,
+  onClick,
   ...rest
 }: NavLinkProps) {
   return (
-    <Link {...rest} href={href} target={target} className={cn("", className)}>
-      <NavigationLinkSkeleton text={text} />
+    <Link
+      onClick={onClick}
+      {...rest}
+      href={href}
+      target={target}
+      className={cn("", className)}
+    >
+      <NavigationLinkSkeleton
+        icon={icon}
+        text={text}
+        textClassName={textClassName}
+      />
     </Link>
   );
 }
@@ -41,6 +55,7 @@ export function NavigationLinkSkeleton(props: {
   light?: boolean;
   icon?: React.ReactNode;
   animateIn?: boolean;
+  textClassName?: string;
 }) {
   const trigger = useRef<any>(null);
   const text = useRef<HTMLSpanElement>(null);
@@ -154,13 +169,31 @@ export function NavigationLinkSkeleton(props: {
           <span className="relative">
             {words.map((word, i) => {
               const chars = word.split("");
+              const last = words.length - 1 === i;
 
               return (
-                <span key={i} className="relative inline-flex mr-1">
+                <span
+                  key={i}
+                  className={cn(
+                    "relative inline-flex",
+                    last ? "" : "mr-1",
+                    props.textClassName
+                  )}
+                >
                   {chars.map((char, i) => {
                     return (
-                      <span id="buttonTextOver" className="relative" key={i}>
-                        {char}
+                      <span
+                        id="buttonTextOver"
+                        key={i}
+                        className="relative flex overflow-hidden"
+                      >
+                        <span
+                          id="buttonTextOverLetter"
+                          className="relative"
+                          key={i}
+                        >
+                          {char}
+                        </span>
                       </span>
                     );
                   })}
@@ -171,13 +204,31 @@ export function NavigationLinkSkeleton(props: {
           <span className="relative">
             {words.map((word, i) => {
               const chars = word.split("");
+              const last = words.length - 1 === i;
 
               return (
-                <span key={i} className="relative inline-flex mr-1">
+                <span
+                  key={i}
+                  className={cn(
+                    "relative inline-flex",
+                    last ? "" : "mr-1",
+                    props.textClassName
+                  )}
+                >
                   {chars.map((char, i) => {
                     return (
-                      <span id="buttonTextUnder" className="relative" key={i}>
-                        {char}
+                      <span
+                        id="buttonTextUnder"
+                        key={i}
+                        className="relative flex overflow-hidden"
+                      >
+                        <span
+                          id="buttonTextUnderLetter"
+                          className="relative"
+                          key={i}
+                        >
+                          {char}
+                        </span>
                       </span>
                     );
                   })}
