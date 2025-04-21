@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
+import AstroBlur from "@/imgs/AstrolightBlurry.png"
 
 export default function AstrolightHero() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -17,10 +19,10 @@ export default function AstrolightHero() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
-      <img
-        src="/AstrolightBlurry.png"
+      <Image 
+        src={AstroBlur}
         alt="Astrolight Background"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-105"
       />
 
       {/* Centered Video Container + Text Overflowing Bottom */}
