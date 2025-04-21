@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { RefObject, useRef } from "react";
 import gsap from "gsap";
 import { ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
@@ -47,42 +47,47 @@ interface ButtonSkeletonProps {
   children?: React.ReactNode;
   icon?: React.ReactNode;
   light?: boolean;
+  animTrigger?: RefObject<HTMLElement | null>;
+  triggerStartOptions?: string;
+  blockAnimation?: RefObject<boolean>;
 }
 
-export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
+export function ButtonSkeleton({
+  children,
+  icon,
+  light,
+  animTrigger,
+  triggerStartOptions,
+  blockAnimation,
+}: ButtonSkeletonProps) {
   const line = useRef<HTMLDivElement>(null);
   const bgLine = useRef<HTMLDivElement>(null);
   const text = useRef<HTMLSpanElement>(null);
   const arrow = useRef<SVGSVGElement>(null);
   const timeline = useRef<gsap.core.Timeline>(null);
-  const trigger = useRef<HTMLDivElement>(null);
+  const localTrigger = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    (timeline.current = gsap
-      .timeline({ paused: true })
-      .set(
-        text.current,
-        {
-          y: "0",
-        },
-        "enter"
-      )
-      .to(text.current, {
-        y: "-100%",
-        duration: 0.5,
-        ease: "power2.out",
-      }));
+  function initScrollTriggers() {
+    let trigger;
+    if (animTrigger && !animTrigger.current) {
+      requestAnimationFrame(initScrollTriggers);
+      return;
+    } else if (animTrigger && animTrigger.current) {
+      trigger = animTrigger;
+    } else {
+      trigger = localTrigger;
+    }
 
     gsap.fromTo(
       arrow.current,
-      { y: "100%" },
+      { y: "200%" },
       {
         y: "0%",
         duration: 1,
         ease: "power4.out",
         scrollTrigger: {
           trigger: trigger.current,
-          start: "top bottom",
+          start: triggerStartOptions ?? "top bottom",
           toggleActions: "restart none none reverse",
         },
       }
@@ -97,7 +102,7 @@ export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
         ease: "power4.out",
         scrollTrigger: {
           trigger: trigger.current,
-          start: "top bottom",
+          start: triggerStartOptions ?? "top bottom",
           toggleActions: "restart none none reverse",
         },
       }
@@ -112,14 +117,34 @@ export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
         ease: "power4.out",
         scrollTrigger: {
           trigger: trigger.current,
-          start: "top bottom",
+          start: triggerStartOptions ?? "top bottom",
           toggleActions: "restart none none reverse",
         },
       }
     );
+  }
+
+  useGSAP(() => {
+    timeline.current = gsap
+      .timeline({ paused: true })
+      .set(
+        text.current,
+        {
+          y: "0",
+        },
+        "enter"
+      )
+      .to(text.current, {
+        y: "-100%",
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+    initScrollTriggers();
   });
 
   const onHover = () => {
+    if (blockAnimation && blockAnimation.current) return;
     gsap.fromTo(
       line.current,
       {
@@ -165,7 +190,7 @@ export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
 
   return (
     <div
-      ref={trigger}
+      ref={localTrigger}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={cn(
