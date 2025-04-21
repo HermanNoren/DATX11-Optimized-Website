@@ -3,7 +3,8 @@ import { Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import { ReactLenis } from "@/utils/lenis";
 import { CartProvider } from "./cart/_components/cartlogic";
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
+import StopScrollProvider from "./providers/StopScrollProvider";
 
 export const rhd = Red_Hat_Display({
   subsets: ["latin"],
@@ -24,10 +25,12 @@ export default function RootLayout({
     <html lang="en">
       <ReactLenis root>
         <body className={`${rhd.className} relative antialiased`}>
-          <CartProvider>
-            <Header />
-            {children}
-          </CartProvider>
+          <StopScrollProvider>
+            <CartProvider>
+              <Header />
+              {children}
+            </CartProvider>
+          </StopScrollProvider>
         </body>
       </ReactLenis>
     </html>
