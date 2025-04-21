@@ -1,5 +1,8 @@
 "use client";
 
+import Button from "@/components/Button";
+import Link from "next/link";
+
 export default function CeoQuote() {
   return (
     <section className="w-full px-[2em] p-30">
@@ -22,15 +25,16 @@ export default function CeoQuote() {
         </div>
 
         {/* Quote */}
-        <div className="w-full lg:w-1/2 text-sm font-light leading-relaxed tracking-wide">
-          <p className="italic">
+        <div className="w-full lg:w-1/2 flex flex-col gap-6">
+          <p className="italic text-sm font-light leading-relaxed">
             “DESIGNED SPECIFICALLY FOR COLLECTORS, PIONEERS, AND VISIONARIES,
             OWNING A DECUBE MEANS POSSESSING SOMETHING TRULY EXTRAORDINARY.”
-            <br />
-            <span className="not-italic font-medium">
+            &nbsp;
+            <span className="not-italic font-normal">
               – CEO OF DECUBE
             </span>
           </p>
+          <Button className= "w-50" as={Link} href={"/products"}> BUY NOW </Button> 
         </div>
       </div>
     </section>

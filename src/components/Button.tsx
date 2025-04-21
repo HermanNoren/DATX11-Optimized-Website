@@ -169,8 +169,8 @@ export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={cn(
-        "relative w-full py-4 flex justify-between items-center overflow-hidden",
-        light ? "text-background" : "text-foreground"
+        "relative w-full  py-4 flex justify-between items-center overflow-hidden",
+        light ? "text-background" : "text-foreground" 
       )}
     >
       <div className="relative h-6 overflow-hidden pr-24">
@@ -186,7 +186,7 @@ export function ButtonSkeleton({ children, icon, light }: ButtonSkeletonProps) {
       ) : (
         <ArrowUpRight
           ref={arrow}
-          strokeWidth={1}
+          strokeWidth={0.75}
           className="absolute right-4 size-7"
         />
       )}
