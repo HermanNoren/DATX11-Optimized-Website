@@ -33,7 +33,7 @@ const ProductPage: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full max-w-screen-2xl mx-auto overflow-x-hidden min-w-[320px]">
+    <div className="relative w-full overflow-x-hidden min-w-[320px]">
       <div className="gradient-bg relative z-10 "> 
         <ProductHero/>
         {products.map((product) => (
