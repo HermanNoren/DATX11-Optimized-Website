@@ -166,7 +166,7 @@ export default function InteractiveAstrolightCanvas() {
       ></div>
       <div
         ref={containerRef}
-        className="absolute bottom-0 left-0 w-full h-[75vh]"
+        className="absolute bottom-0 left-0 w-full h-[75vh] pointer-events-none"
       ></div>
     </div>
   );

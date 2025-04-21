@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import Astrolight from "./_components/AstroLight";
 import CubeShowcase from "./_components/CubeShowcase";
 import CubeSizes from "./_components/CubeSizes";
@@ -10,6 +11,7 @@ export default function Home() {
       <CubeShowcase/>
       <CubeSizes/>
       <Astrolight/>
+      <Footer/>
     </>
   );
 }
