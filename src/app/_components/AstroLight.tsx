@@ -1,4 +1,6 @@
+import Button from "@/components/Button";
 import InteractiveAstrolightCanvas from "@/components/InteractiveAstroligtCanvas";
+import Link from "next/link";
 
 export default function Astrolight() {
   return (
@@ -7,11 +9,12 @@ export default function Astrolight() {
         <InteractiveAstrolightCanvas />
       </div>
       <div className="relative w-full h-full container grid place-items-center pointer-events-none">
-        <div>
-        <h2 className="text-6xl uppercase text-center">Experience the Astrolight</h2>
-        <p className="text-base uppercase text-center"> 
-          Exclusive materials since 1998: A material rarer than gold, engineered for those who seek the extraordinary.
+        <div className="flex flex-col gap-6 items-center">
+        <h2 className="text-6xl uppercase text-center">Experience Astrolight</h2>
+        <p className="uppercase text-center w-110"> 
+          A material rarer than gold, engineered for those who seek the extraordinary.
         </p>
+        <Button className="w-60 pointer-events-auto" as={Link} href="/astrolight"> READ MORE</Button>
         </div>
       </div>
     </section>
