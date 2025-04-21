@@ -6,6 +6,7 @@ import { Copyright } from "lucide-react";
 import Button from "@/components/Button";
 import Link from "next/link";
 import NavigationLink from "../NavigationLink";
+import CubeScene from "../3D/CubeScene";
 
 export default function CTA() {
   const container = useRef(null);
