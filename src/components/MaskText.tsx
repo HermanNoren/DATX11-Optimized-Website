@@ -9,7 +9,6 @@ import { useMemo, useRef } from "react";
 export default function MaskText(
   props: Readonly<{
     phrase: string;
-    children: React.ReactNode;
     className?: string;
     fontSize?: string;
     highlightWords?: string;

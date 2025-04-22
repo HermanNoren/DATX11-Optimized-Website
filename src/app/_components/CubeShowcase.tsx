@@ -21,7 +21,7 @@ standard.`;
             <MaskText phrase="Luxurious decorations" stagger={0.1} />
           </h2>
           <p className="text-end pb-6">
-            <MaskText phrase={paragraphPhrase} stagger={0.005} />
+            <MaskText phrase={paragraphPhrase} />
           </p>
           <Button className="w-60" as={Link} href="/about">
             READ MORE
