@@ -59,8 +59,8 @@ export default function Cart() {
   );
 
   return (
-    <section className="w-screen h-screen">
-      <div className="container grid place-items-center gap-12 pt-section-padding pb-12">
+    <section className="w-screen py-section-padding">
+      <div className="container grid place-items-center gap-12  pb-12">
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-6xl">Total: {formatPrice(totalPrice)} SEK</h1>
           <p className="">Worldwide shipping and no returns</p>

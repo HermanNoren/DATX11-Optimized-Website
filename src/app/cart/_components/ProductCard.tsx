@@ -38,7 +38,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="relative bg-white flex justify-between w-150 p-10 rounded-2xl">
+    <div className="relative bg-white flex justify-between m-2 w-150 p-10 rounded-sm">
       <div className="flex w-full gap-8">
         <Image
           src={image}
