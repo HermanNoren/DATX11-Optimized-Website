@@ -1,12 +1,9 @@
 import Button from "@/components/Button";
-import Image from "next/image";
 import Link from "next/link";
-import Packaging from "@/imgs/png/packaging.jpg"
-import ParallaxImage from "@/components/ParallaxImage";
 
 export default function RecievingProduct() {
   return (
-    <section className="w-full py-20 grid place-items-center">
+    <section className="w-full py-30 grid place-items-center">
       <div className="bg-[#D9D9D9] pb-15 w-[50em]">
         {/* Top row: video + heading */}
         <div className="flex flex-col lg:flex-row items-center gap-4 mb-12">
