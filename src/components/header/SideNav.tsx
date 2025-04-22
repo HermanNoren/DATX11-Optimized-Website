@@ -1,13 +1,10 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useRef } from "react";
 import NavigationLink from "../NavigationLink";
 import { Link } from "./Header";
-import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
-import { link } from "fs";
 import { socials } from "@/utils/socials";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
-import CartButton from "./CartButton";
 import { useCart } from "@/app/cart/_components/cartlogic";
 import { usePathname } from "next/navigation";
 
@@ -174,7 +171,6 @@ export default function SideNav({
           <ul className="menu-list flex flex-col gap-8 w-full">
             <div className="flex flex-col">
               {links.map((link, i) => {
-                const isActive = link.href === pathname;
 
                 return (
                   <li key={i} className="flex relative pl-8">

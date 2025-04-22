@@ -6,12 +6,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BurgerMenu from "./BurgerMenu";
-import { AnimatePresence } from "framer-motion";
 import SideNav from "./SideNav";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { useStopScroll } from "@/app/providers/StopScrollProvider";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 import CartButton from "./CartButton";
 
 export interface Link {
@@ -19,19 +16,6 @@ export interface Link {
   href: string;
 }
 
-const fadeInBG = {
-  initial: {
-    opacity: 0,
-  },
-  enter: {
-    opacity: 0.6,
-    transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 1, ease: [0.76, 0, 0.24, 1] },
-  },
-};
 
 export default function Header() {
   const links: Link[] = [

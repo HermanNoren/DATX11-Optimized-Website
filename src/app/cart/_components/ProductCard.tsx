@@ -1,8 +1,8 @@
 import Image from "next/image";
 import "./ProductCard.css";
 import Button from "@/components/Button";
-import { Check, Cross, Minus, Plus, Trash, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Check, Minus, Plus, X } from "lucide-react";
+import { useState } from "react";
 import { cn } from "@/utils/cn";
 
 interface ProductCardProps {
