@@ -1,7 +1,7 @@
 import MaskText from "@/components/MaskText";
 import ParallaxImage from "@/components/ParallaxImage";
-import cubeChairHybrid from "@/imgs/png/chair&cube(hybrid).png";
-import cubeWindowHybrid from "@/imgs/png/cube&window(hybrid).png";
+import cubeChairPainting from "@/imgs/png/cubeChairPaintings.webp"
+import cubeWindowHybrid from "@/imgs/png/cubeWindow.webp";
 
 export default function ParallaxImageSection() {
   const cubeLangs = "CUBE/KUB/CUBO/KUUTIO/立方体";
@@ -18,7 +18,7 @@ export default function ParallaxImageSection() {
         </div>
         <div className="absolute left-50 top-72 z-0">
           <div className="relative w-80 aspect-[1/1.5]">
-            <ParallaxImage src={cubeChairHybrid} alt="Cube Image" />
+            <ParallaxImage src={cubeChairPainting} alt="Cube Image" />
           </div>
           <div className="rotate-z-90 rotate-x-180 rotate-y-180 origin-top-left absolute right-[-15.5em]">
             <span className="">{cubeLangs}</span>
