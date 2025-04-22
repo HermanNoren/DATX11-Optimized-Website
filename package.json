@@ -39,6 +39,7 @@
     "eslint-config-next": "15.1.6",
     "leva": "^0.10.0",
     "matter-js": "^0.20.0",
+    "next-transition-router": "^0.2.9",
     "postcss": "^8",
     "tailwindcss": "^4.0.9",
     "typescript": "^5"

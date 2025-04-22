@@ -6,6 +6,7 @@ import { CartProvider } from "./cart/_components/cartlogic";
 import Header from "@/components/header/Header";
 import StopScrollProvider from "./providers/StopScrollProvider";
 import HeaderProvider from "./providers/HeaderProvider";
+import PageTransitionProviders from "./providers/PageTransitionProviders";
 
 export const rhd = Red_Hat_Display({
   subsets: ["latin"],
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReactLenis root>
-        <body className={`${rhd.className} relative antialiased`}>
+        <body className={`${rhd.className} antialiased`}>
           <StopScrollProvider>
             <CartProvider>
-              <HeaderProvider>{children}</HeaderProvider>
+              <PageTransitionProviders>
+                <HeaderProvider>{children}</HeaderProvider>
+              </PageTransitionProviders>
             </CartProvider>
           </StopScrollProvider>
         </body>
