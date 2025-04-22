@@ -328,7 +328,7 @@ export default function CubeSizes() {
       {
         y: "0",
         duration: 0.5,
-        stagger: 0.02,
+        stagger: 0.05,
         ease: "power2.out",
       }
     );
@@ -345,7 +345,7 @@ export default function CubeSizes() {
       {
         y: "100%",
         duration: 0.5,
-        stagger: -0.02,
+        stagger: -0.05,
         ease: "power2.in",
       }
     );
