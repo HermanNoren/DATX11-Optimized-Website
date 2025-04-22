@@ -8,6 +8,8 @@ import { cn } from "@/utils/cn";
 
 type ButtonOwnProps = {
   icon?: React.ReactNode;
+  iconRef?: RefObject<HTMLDivElement | null>;
+  lineRef?: RefObject<HTMLDivElement | null>;
   light?: boolean;
   className?: string;
   children?: React.ReactNode;
@@ -24,6 +26,8 @@ export type ButtonProps<C extends React.ElementType = "button"> =
 export default function Button<C extends React.ElementType = "button">({
   as,
   icon,
+  iconRef,
+  lineRef,
   light,
   children,
   className,
@@ -37,7 +41,12 @@ export default function Button<C extends React.ElementType = "button">({
       ...rest,
       className: cn("", className),
     } as React.ComponentPropsWithoutRef<C>,
-    <ButtonSkeleton icon={icon} light={light}>
+    <ButtonSkeleton
+      icon={icon}
+      light={light}
+      iconRef={iconRef}
+      lineRef={lineRef}
+    >
       {children}
     </ButtonSkeleton>
   );
@@ -46,6 +55,8 @@ export default function Button<C extends React.ElementType = "button">({
 interface ButtonSkeletonProps {
   children?: React.ReactNode;
   icon?: React.ReactNode;
+  iconRef?: RefObject<HTMLDivElement | null>;
+  lineRef?: RefObject<HTMLDivElement | null>;
   light?: boolean;
   animTrigger?: RefObject<HTMLElement | null>;
   triggerStartOptions?: string;
@@ -55,17 +66,22 @@ interface ButtonSkeletonProps {
 export function ButtonSkeleton({
   children,
   icon,
+  iconRef,
+  lineRef,
   light,
   animTrigger,
   triggerStartOptions,
   blockAnimation,
 }: ButtonSkeletonProps) {
-  const line = useRef<HTMLDivElement>(null);
+  const line = lineRef ? lineRef : useRef<HTMLDivElement>(null);
   const bgLine = useRef<HTMLDivElement>(null);
   const text = useRef<HTMLSpanElement>(null);
   const arrow = useRef<SVGSVGElement>(null);
+  const customIcon = useRef<HTMLDivElement>(null);
   const timeline = useRef<gsap.core.Timeline>(null);
   const localTrigger = useRef<HTMLDivElement>(null);
+
+  const iconContainerRef = icon ? customIcon : arrow;
 
   function initScrollTriggers() {
     let trigger;
@@ -79,7 +95,7 @@ export function ButtonSkeleton({
     }
 
     gsap.fromTo(
-      arrow.current,
+      iconContainerRef.current,
       { y: "200%" },
       {
         y: "0%",
@@ -157,7 +173,7 @@ export function ButtonSkeleton({
       }
     );
     gsap.fromTo(
-      arrow.current,
+      iconContainerRef.current,
       {
         opacity: 1,
         right: "1em",
@@ -180,7 +196,7 @@ export function ButtonSkeleton({
       duration: 1,
       ease: "power2.out",
     });
-    gsap.to(arrow.current, {
+    gsap.to(iconContainerRef.current, {
       opacity: 1,
       right: "1em",
       duration: 0.5,
@@ -194,7 +210,7 @@ export function ButtonSkeleton({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={cn(
-        "relative w-full py-4 flex justify-between items-center overflow-hidden",
+        "relative w-full  py-4 flex justify-between items-center overflow-hidden",
         light ? "text-background" : "text-foreground"
       )}
     >
@@ -205,13 +221,15 @@ export function ButtonSkeleton({
         </span>
       </div>
       {icon ? (
-        <svg ref={arrow} className="absolute right-4 size-7">
-          {icon}
-        </svg>
+        <div ref={customIcon} className="absolute right-4">
+          <div ref={iconRef} className="">
+            {icon}
+          </div>
+        </div>
       ) : (
         <ArrowUpRight
           ref={arrow}
-          strokeWidth={1}
+          strokeWidth={0.75}
           className="absolute right-4 size-7"
         />
       )}

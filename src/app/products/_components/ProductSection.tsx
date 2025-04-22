@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import MaskText from "@/components/MaskText";
 import Button from "@/components/Button"; // ✅ Custom Button component
 import { useCart } from "@/app/cart/_components/cartlogic";
+import { Plus } from "lucide-react";
+import gsap from "gsap";
 
 interface ProductSectionProps {
   id: string;
@@ -22,6 +24,37 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 }) => {
   const { addItem, cartItems, removeItem, updateQuantity } = useCart();
   const [isAdded, setIsAdded] = useState(false);
+  const iconRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+
+
+  function onClick() {
+    AddingToCart()
+    gsap.fromTo(
+      iconRef.current,
+      { rotate: "0deg" },
+      {
+        rotate: "+=180deg",
+        duration: 0.5,
+        ease: "power4.out",
+      }
+    );
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.clear()
+      .to(lineRef.current, {
+        backgroundColor: "oklch(72.3% 0.219 149.579)",
+        duration: 0.3,
+        ease: "power4.out",
+      })
+      .to(lineRef.current, {
+        backgroundColor: "oklch(0.147 0.004 49.25)",
+        duration: 0.7,
+        ease: "power4.in",
+      })
+      .play();
+  }
 
   const CurrentQuantity = () => {
     const item = cartItems.find((item) => item.id === id);
@@ -76,18 +109,13 @@ const ProductSection: React.FC<ProductSectionProps> = ({
         {/* Add to Cart Button - replaced with custom Button component */}
         <div className="mt-6 max-w-xs">
           <Button
-            onClick={AddingToCart}
+            onClick={onClick}
             disabled={isMaxReached}
-            className={`w-fit ${
-              isAdded ? "scale-110 -translate-y-1 bg-opacity-75" : ""
-            } ${isMaxReached ? "opacity-50 cursor-not-allowed" : ""}`}
+            icon={<Plus className="size-7" strokeWidth={0.75}/>}
+            iconRef={iconRef}
+            lineRef={lineRef}
           >
-            <MaskText
-              stagger={0.005}
-              phrase={
-                isMaxReached ? "Max Quantity" : isAdded ? "Added!" : "Add to Cart"
-              }
-            />
+            ADD TO CART
           </Button>
         </div>
 
