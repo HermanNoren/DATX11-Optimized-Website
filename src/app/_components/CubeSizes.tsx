@@ -560,13 +560,15 @@ export default function CubeSizes() {
   return (
     <section ref={trigger} className="relative h-lvh z-20 gradient-bg">
       <div className="container w-full h-full grid grid-cols-2 gap-4">
-        <div className="absolute inset-0">
-          <CubeScene
-            cubeRef={cube}
-            groupRef={cubeGroup}
-            cubePosition={[-1.7, 0, 0]}
-            cubeSize={0}
-          />
+        <div className="absolute container inset-0">
+          <div className="relative w-full h-full">
+            <CubeScene
+              cubeRef={cube}
+              groupRef={cubeGroup}
+              cubePosition={[-1.75, 0, 0]}
+              cubeSize={0}
+            />
+          </div>
         </div>
         <div className="grid place-items-center">
           <div className="relative w-[30em] aspect-square">
