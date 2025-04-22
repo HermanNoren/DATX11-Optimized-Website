@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import MaskText from "@/components/MaskText";
-import Button from "@/components/Button"; // ✅ Custom Button component
+import Button from "@/components/Button"; 
 import { useCart } from "@/app/cart/_components/cartlogic";
 import { Plus } from "lucide-react";
 import gsap from "gsap";

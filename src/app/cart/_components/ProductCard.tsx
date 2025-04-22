@@ -1,5 +1,4 @@
 import Image from "next/image";
-import "./ProductCard.css";
 import Button from "@/components/Button";
 import { Check, Minus, Plus, X } from "lucide-react";
 import { useState } from "react";
@@ -39,7 +38,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="relative bg-white flex justify-between w-150 p-4 rounded-2xl">
+    <div className="relative bg-white flex justify-between w-150 p-10 rounded-2xl">
       <div className="flex w-full gap-8">
         <Image
           src={image}

@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import { useCart } from "./_components/cartlogic";
-import "./cartpage.css";
 import ProductCard from "./_components/ProductCard";
 
 interface Product {
