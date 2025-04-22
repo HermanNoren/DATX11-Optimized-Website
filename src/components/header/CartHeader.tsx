@@ -51,10 +51,6 @@ export default function CartHeader() {
       name: "FAQ",
       href: "/faq",
     },
-    {
-      name: "Contact",
-      href: "/contact",
-    },
   ];
 
   const [isActive, setIsActive] = useState<boolean>(false);
