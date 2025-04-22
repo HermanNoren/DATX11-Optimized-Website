@@ -6,37 +6,18 @@ import BurgerMenu from "./BurgerMenu";
 import SideNav from "./SideNav";
 import { useEffect, useState } from "react";
 import { useStopScroll } from "@/app/providers/StopScrollProvider";
+import { useHeader } from "@/app/providers/HeaderProvider";
 
 export interface Link {
   name: string;
   href: string;
 }
 
-
-
 export default function CartHeader() {
-  const links: Link[] = [
-    {
-      name: "Home",
-      href: "/",
-    },
-    {
-      name: "About",
-      href: "/about",
-    },
-    {
-      name: "Astrolight",
-      href: "/astrolight",
-    },
-    {
-      name: "FAQ",
-      href: "/faq",
-    },
-  ];
-
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
+  const { links } = useHeader();
 
   useEffect(() => {
     setScrollDisabled(isActive);

@@ -7,37 +7,22 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BurgerMenu from "./BurgerMenu";
 import SideNav from "./SideNav";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import { useStopScroll } from "@/app/providers/StopScrollProvider";
 import CartButton from "./CartButton";
-
-export interface Link {
-  name: string;
-  href: string;
-}
+import { useHeader } from "@/app/providers/HeaderProvider";
 
 export default function Header() {
-  const links: Link[] = [
-    {
-      name: "Home",
-      href: "/",
-    },
-    {
-      name: "About",
-      href: "/about",
-    },
-    {
-      name: "Astrolight",
-      href: "/astrolight",
-    },
-    {
-      name: "FAQ",
-      href: "/faq",
-    },
-  ];
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
+
+  const { links, activeIndex, setActiveIndex } = useHeader();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const indicatorRefs = useRef(
+    Array.from({ length: links.length + 2 }, () => createRef<HTMLDivElement>())
+  );
 
   useEffect(() => {
     setScrollDisabled(isActive);
@@ -60,6 +45,7 @@ export default function Header() {
       start: 0,
       end: 50,
       onLeave: () => {
+        setIsScrolled(true);
         gsap.to(".header_stagger_item", {
           y: "-105%",
           duration: 0.5,
@@ -80,6 +66,7 @@ export default function Header() {
         });
       },
       onEnterBack: () => {
+        setIsScrolled(false);
         gsap.to(".header_stagger_item", {
           y: 0,
           duration: 0.5,
@@ -102,6 +89,67 @@ export default function Header() {
     });
   });
 
+  useEffect(() => {
+    ScrollTrigger.create({
+      id: "headerIndicatorScrollScrollTrigger",
+      trigger: document.documentElement,
+      start: 0,
+      end: 50,
+      onLeave: () => {
+        gsap.to(indicatorRefs.current[activeIndex].current, {
+          scale: 0,
+          duration: 0.5,
+          ease: "power4.in",
+        });
+      },
+      onEnterBack: () => {
+        gsap.to(indicatorRefs.current[activeIndex].current, {
+          scale: 1,
+          duration: 0.5,
+          delay: 0.1 * activeIndex,
+          ease: "power4.out",
+        });
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getById("headerIndicatorScrollScrollTrigger")?.kill();
+    };
+  }, [activeIndex]);
+
+  useEffect(() => {
+    gsap.set(indicatorRefs.current[activeIndex].current, { scale: 1 });
+  }, []);
+
+  function onMouseEnter(i: number) {
+    if (isScrolled) return;
+    for (let j = 0; j < indicatorRefs.current.length; j++) {
+      const linkRef = indicatorRefs.current[j];
+      if (i === j) {
+        gsap.to(linkRef.current, { scale: 1, duration: 0.3 });
+      } else {
+        gsap.to(linkRef.current, { scale: 0, duration: 0.3 });
+      }
+    }
+  }
+
+  function onMouseLeave() {
+    if (isScrolled) return;
+    for (let j = 0; j < indicatorRefs.current.length; j++) {
+      const linkRef = indicatorRefs.current[j];
+      if (j === activeIndex) {
+        gsap.to(linkRef.current, { scale: 1, duration: 0.3 });
+      } else {
+        gsap.to(linkRef.current, { scale: 0, duration: 0.3 });
+      }
+    }
+  }
+
+  function onClick(i: number) {
+    if (isScrolled) return;
+    setActiveIndex(i);
+  }
+
   return (
     <header className="fixed top-0 left-0 w-full z-100 ">
       <div className="container w-full flex pt-container-padding ">
@@ -117,12 +165,26 @@ export default function Header() {
           <ul className="flex gap-4 self-center">
             {links.map((link, i) => {
               return (
-                <li key={i} className="uppercase flex overflow-hidden ">
-                  <NavigationLink
-                    href={link.href}
-                    text={link.name}
-                    className="header_stagger_item"
-                  ></NavigationLink>
+                <li key={i} className="relative">
+                  <div
+                    id="sideNavLinkIndicator"
+                    ref={indicatorRefs.current[i]}
+                    className="absolute left-[50%] translate-x-[-50%] -bottom-6 will-change-transform scale-0"
+                  >
+                    <span className="">•</span>
+                  </div>
+                  <div
+                    onMouseEnter={() => onMouseEnter(i)}
+                    onMouseLeave={onMouseLeave}
+                    onClick={() => onClick(i)}
+                    className="uppercase flex overflow-hidden"
+                  >
+                    <NavigationLink
+                      href={link.href}
+                      text={link.name}
+                      className="header_stagger_item"
+                    ></NavigationLink>
+                  </div>
                 </li>
               );
             })}
@@ -130,20 +192,50 @@ export default function Header() {
         </nav>
         <nav className="flex justify-end flex-1">
           <ul className="flex gap-4 self-center">
-            <li className="uppercase flex overflow-hidden">
-              <NavigationLink
-                href="/products"
-                text="Buy Me"
-                className="header_stagger_item"
-              ></NavigationLink>
+            <li className="relative">
+              <div
+                ref={indicatorRefs.current[indicatorRefs.current.length - 2]}
+                className="absolute left-[50%] translate-x-[-50%] -bottom-6 will-change-transform scale-0"
+              >
+                <span className="">•</span>
+              </div>
+              <div
+                onMouseEnter={() =>
+                  onMouseEnter(indicatorRefs.current.length - 2)
+                }
+                onMouseLeave={onMouseLeave}
+                onClick={() => onClick(indicatorRefs.current.length - 2)}
+                className="uppercase flex overflow-hidden"
+              >
+                <NavigationLink
+                  href="/products"
+                  text="Buy Me"
+                  className="header_stagger_item"
+                ></NavigationLink>
+              </div>
             </li>
 
-            <li className="uppercase flex">
-              <CartButton
-                href="/cart"
-                text="Cart"
-                className="header_stagger_item"
-              ></CartButton>
+            <li className="relative">
+              <div
+                ref={indicatorRefs.current[indicatorRefs.current.length - 1]}
+                className="absolute left-[50%] translate-x-[-50%] -bottom-6 will-change-transform scale-0"
+              >
+                <span className="">•</span>
+              </div>
+              <div
+                onMouseEnter={() =>
+                  onMouseEnter(indicatorRefs.current.length - 1)
+                }
+                onMouseLeave={onMouseLeave}
+                onClick={() => onClick(indicatorRefs.current.length - 1)}
+                className="relative uppercase flex"
+              >
+                <CartButton
+                  href="/cart"
+                  text="Cart"
+                  className="header_stagger_item"
+                ></CartButton>
+              </div>
             </li>
           </ul>
         </nav>
