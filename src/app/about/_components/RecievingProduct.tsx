@@ -1,5 +1,8 @@
 import Button from "@/components/Button";
+import Image from "next/image";
 import Link from "next/link";
+import Packaging from "@/imgs/png/packaging.jpg"
+import ParallaxImage from "@/components/ParallaxImage";
 
 export default function RecievingProduct() {
   return (
@@ -45,9 +48,8 @@ export default function RecievingProduct() {
           </p>
         </div>
         <div className="mt-10 flex flex-col gap-2 items-center">
-          <p className="font-normal text-xl">ANY QUESTIONS?</p>
-          <Button className="w-70" as={Link} href={"/faq"}>
-            CHECK OUT OUR FAQ
+          <Button className="w-90" as={Link} href={"/faq"}>
+            FOR QUESTIONS, CHECK OUT FAQ
           </Button>
         </div>
       </div>
