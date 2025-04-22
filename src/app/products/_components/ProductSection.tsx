@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import MaskText from "@/components/MaskText";
-import Button from "@/components/Button";
+import Button from "@/components/Button"; // ✅ Custom Button component
 import { useCart } from "@/app/cart/_components/cartlogic";
 
 interface ProductSectionProps {
@@ -31,7 +31,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const AddingToCart = () => {
     const currentQuantity = CurrentQuantity();
 
-    if (currentQuantity >= 10) return;
+    if (currentQuantity >= 10) {
+      return;
+    }
 
     addItem({
       id,
@@ -71,28 +73,11 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           <MaskText stagger={0.005} phrase={`Value: ${value} sek`} />
         </p>
 
-        {/* Add to Cart Button with + icon */}
+        {/* Add to Cart Button - replaced with custom Button component */}
         <div className="mt-6 max-w-xs">
           <Button
             onClick={AddingToCart}
             disabled={isMaxReached}
-            icon={
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="inline-block align-middle ml-2  mt-20 pt-20 absolut top-[4px]"
-              >
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
-            }
-            
             className={`w-fit ${
               isAdded ? "scale-110 -translate-y-1 bg-opacity-75" : ""
             } ${isMaxReached ? "opacity-50 cursor-not-allowed" : ""}`}
@@ -106,7 +91,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           </Button>
         </div>
 
-        {/* Remove from cart */}
+        {/* Remove */}
         {currentQuantity > 0 && (
           <div className="flex items-center gap-2 my-2 text-[#404040]">
             <p>
