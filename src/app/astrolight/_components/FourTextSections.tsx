@@ -18,13 +18,10 @@ export default function FourTextSections() {
             }}
             className="font-light"
           >
-            <MaskText phrase="A CELESTIAL DISCOVERY" stagger={0.003} />
+            <MaskText phrase="A CELESTIAL DISCOVERY" stagger={0.05} />
           </h3>
           <p className="text-[var(--text-base)] font-light leading-[var(--text-base--line-height)] tracking-wide">
-            <MaskText
-              stagger={0.0015}
-              phrase="Astrolight is a once-mythical substance—an outer-Earth alloy formed under extreme cosmic pressure. Located and extracted from Asteroid Ryugu, it was transported across millions of kilometers by cutting-edge space technology. What arrived was more than metal. It was potential."
-            />
+            <MaskText phrase="Astrolight is a once-mythical substance—an outer-Earth alloy formed under extreme cosmic pressure. Located and extracted from Asteroid Ryugu, it was transported across millions of kilometers by cutting-edge space technology. What arrived was more than metal. It was potential." />
           </p>
         </div>
 
@@ -37,13 +34,10 @@ export default function FourTextSections() {
             }}
             className="font-light"
           >
-            <MaskText phrase="FORGED IN EXTREMES" stagger={0.003} />
+            <MaskText phrase="FORGED IN EXTREMES" stagger={0.05} />
           </h3>
           <p className="text-[var(--text-base)] font-light leading-[var(--text-base--line-height)] tracking-wide">
-            <MaskText
-              stagger={0.0015}
-              phrase="Through an advanced, proprietary process, Astrolight is crystallized into flawless geometric cubes. Each piece reflects an eerie, otherworldly glow, capturing light in a way unmatched by any terrestrial element. The result? A cube that is equal parts sculpture and artifact."
-            />
+            <MaskText phrase="Through an advanced, proprietary process, Astrolight is crystallized into flawless geometric cubes. Each piece reflects an eerie, otherworldly glow, capturing light in a way unmatched by any terrestrial element. The result? A cube that is equal parts sculpture and artifact." />
           </p>
         </div>
 
@@ -56,13 +50,10 @@ export default function FourTextSections() {
             }}
             className="font-light"
           >
-            <MaskText phrase="PRECISION. PURITY. POWER." stagger={0.003} />
+            <MaskText phrase="PRECISION. PURITY. POWER." stagger={0.05} />
           </h3>
           <p className="text-[var(--text-base)] font-light leading-[var(--text-base--line-height)] tracking-wide">
-            <MaskText
-              stagger={0.0015}
-              phrase="Astrolight’s perfect structure and mysterious shimmer speak of cosmic origins and human precision. It is a material rarer than gold, engineered for those who seek the extraordinary—collectors, visionaries, and pioneers alike."
-            />
+            <MaskText phrase="Astrolight’s perfect structure and mysterious shimmer speak of cosmic origins and human precision. It is a material rarer than gold, engineered for those who seek the extraordinary—collectors, visionaries, and pioneers alike." />
           </p>
         </div>
 
@@ -75,13 +66,10 @@ export default function FourTextSections() {
             }}
             className="font-light"
           >
-            <MaskText phrase="A MATERIAL WITH A STORY" stagger={0.003} />
+            <MaskText phrase="A MATERIAL WITH A STORY" stagger={0.05} />
           </h3>
           <p className="text-[var(--text-base)] font-light leading-[var(--text-base--line-height)] tracking-wide">
-            <MaskText
-              stagger={0.0015}
-              phrase="From the void of space to the palm of your hand, Astrolight represents a story of ambition, science, and imagination. Each cube is a symbol: of how far we’ve come—and how far we dare to go."
-            />
+            <MaskText phrase="From the void of space to the palm of your hand, Astrolight represents a story of ambition, science, and imagination. Each cube is a symbol: of how far we’ve come—and how far we dare to go." />
           </p>
         </div>
       </div>
