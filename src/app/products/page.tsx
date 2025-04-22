@@ -3,7 +3,6 @@ import React from "react";
 import ProductSection from "./_components/ProductSection";
 import ProductHero from "./_components/ProductHero";
 
-
 const ProductPage: React.FC = () => {
   const products = [
     {
@@ -33,14 +32,14 @@ const ProductPage: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full overflow-x-hidden min-w-[320px]">
-      <div className="gradient-bg relative z-10 "> 
-        <ProductHero/>
+    <div className="relative w-full overflow-x-hidden">
+      <div className="gradient-bg relative z-10 ">
+        <ProductHero />
         {products.map((product) => (
-            <ProductSection key={product.id} {...product} />
+          <ProductSection key={product.id} {...product} />
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

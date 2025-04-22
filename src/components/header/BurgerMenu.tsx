@@ -5,16 +5,19 @@ import "./burgerMenu.css";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/utils/cn";
 
 export default function BurgerMenu(props: {
   isActive: boolean;
   setIsActive: (value: boolean) => void;
   isAnimating: boolean;
+  isInCart?: boolean;
 }) {
   const button = useRef<HTMLButtonElement>(null);
   const burger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (props.isInCart) return;
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.create({
@@ -48,7 +51,10 @@ export default function BurgerMenu(props: {
     <button
       ref={button}
       onClick={onClick}
-      className="fixed bg-white rounded-full top-container-padding right-container-padding flex justify-center items-center size-10 z-[100] scale-0 will-change-transform"
+      className={cn(
+        "fixed bg-white rounded-full top-container-padding right-container-padding flex justify-center items-center size-10 z-[100]",
+        props.isInCart ? "" : "scale-0 will-change-transform"
+      )}
     >
       <div
         ref={burger}

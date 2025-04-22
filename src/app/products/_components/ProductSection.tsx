@@ -6,6 +6,9 @@ import Button from "@/components/Button"; // ✅ Custom Button component
 import { useCart } from "@/app/cart/_components/cartlogic";
 import { Plus } from "lucide-react";
 import gsap from "gsap";
+import ParallaxScroll from "@/components/ParallaxScroll";
+import Image from "next/image";
+import ClipPathReveal from "@/components/ClipPathReveal";
 
 interface ProductSectionProps {
   id: string;
@@ -27,9 +30,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const iconRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
-
   function onClick() {
-    AddingToCart()
+    AddingToCart();
     gsap.fromTo(
       iconRef.current,
       { rotate: "0deg" },
@@ -93,9 +95,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const isMaxReached = currentQuantity >= 10;
 
   return (
-    <div className="flex justify-between items-start px-8 py-10 mt-16 gap-8 pb-40">
+    <div className="flex justify-between items-start container py-10 mt-16 gap-8 pb-40">
       {/* Left Section */}
-      <div className="flex-1 p-8">
+      <div className="flex-1">
         <h2 className="text-4xl text-[#404040] mb-1">
           <MaskText stagger={0.005} phrase={name} />
         </h2>
@@ -111,7 +113,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           <Button
             onClick={onClick}
             disabled={isMaxReached}
-            icon={<Plus className="size-7" strokeWidth={0.75}/>}
+            icon={<Plus className="size-7" strokeWidth={0.75} />}
             iconRef={iconRef}
             lineRef={lineRef}
           >
@@ -137,13 +139,25 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 
       {/* Center Image */}
       <div className="flex-1 flex justify-center">
-        <img src={`/${name}.gif`} alt="Product" className="w-4/5 h-auto" />
+        <div className="w-4/5 h-auto">
+          <ClipPathReveal>
+            <ParallaxScroll factor={0.04}>
+              <Image
+                src={`/${name}.gif`}
+                alt="Product"
+                width={400}
+                height={400}
+                className="w-4/5 h-auto"
+              />
+            </ParallaxScroll>
+          </ClipPathReveal>
+        </div>
       </div>
 
       {/* Right Description */}
       <div className="flex-1 text-[#404040] flex justify-end">
         <p className="text-right w-3/5">
-          <MaskText stagger={0.005} phrase={description} />
+          <MaskText stagger={0.01} phrase={description} />
         </p>
       </div>
     </div>
