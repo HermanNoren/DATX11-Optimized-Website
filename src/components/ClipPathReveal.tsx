@@ -30,7 +30,7 @@ export default function ClipPathReveal(props: {
         scrollTrigger: {
           trigger: trigger.current,
           start: "top bottom",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none none",
         },
       }
     );

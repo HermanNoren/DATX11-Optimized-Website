@@ -104,7 +104,7 @@ export function ButtonSkeleton({
         scrollTrigger: {
           trigger: trigger.current,
           start: triggerStartOptions ?? "top bottom",
-          toggleActions: "restart none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -119,7 +119,7 @@ export function ButtonSkeleton({
         scrollTrigger: {
           trigger: trigger.current,
           start: triggerStartOptions ?? "top bottom",
-          toggleActions: "restart none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -134,7 +134,7 @@ export function ButtonSkeleton({
         scrollTrigger: {
           trigger: trigger.current,
           start: triggerStartOptions ?? "top bottom",
-          toggleActions: "restart none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
