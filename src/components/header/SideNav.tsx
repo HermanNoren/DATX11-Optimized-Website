@@ -82,10 +82,9 @@ export default function SideNav({
         .fromTo(
           indicatorRefs.current[activeIndex].current,
           { scale: 0 },
-          { scale: 1 },
+          { scale: 1, delay: 0.3 },
           "<"
         )
-        .fromTo(cartIndicator, { scale: 0 }, { scale: 1 }, "<")
         .fromTo(
           fadeTargets,
           { autoAlpha: 0, yPercent: 50 },
@@ -99,6 +98,7 @@ export default function SideNav({
           },
           "<+=0.2"
         )
+        .fromTo(cartIndicator, { scale: 0 }, { scale: 1 }, "<")
         .play();
     };
 
@@ -236,8 +236,10 @@ export default function SideNav({
                 </div>
                 <div className="relative">
                   {cartCount > 0 ? (
-                    <div className="absolute top-0 translate-y-[-25%] right-0 translate-x-[50%] rounded-full bg-white size-5 grid place-items-center z-90 side-nav-cart-indicator">
-                      <span className="text-xs leading-1">{cartCount}</span>
+                    <div className="absolute top-0 -right-6 rounded-full size-5 flex justify-center items-center z-90 side-nav-cart-indicator">
+                      <span className="text-2xl select-none pointer-events-none">
+                        {cartCount}
+                      </span>
                     </div>
                   ) : null}
                   <div
