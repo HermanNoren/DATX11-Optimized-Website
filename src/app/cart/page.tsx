@@ -84,7 +84,7 @@ export default function Cart() {
         {totalPrice === 0 ? (
           <p>Add items to checkout</p>
         ) : (
-          <Link href="/lastpage">
+          <Link href="/success">
             <button className="px-4 py-4 bg-accent text-background font-normal rounded-2xl">
               CHECKOUT
             </button>

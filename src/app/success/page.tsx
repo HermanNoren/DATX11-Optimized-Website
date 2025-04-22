@@ -11,7 +11,7 @@ export default function Success() {
             <Boxes strokeWidth={1} className="size-36" />
           </div>
           <div className="pb-8">
-            <h1 className="text-6xl text-center">
+            <h1 className="text-7xl text-center">
               Thank you for checking <br /> out deCube!
             </h1>
           </div>
