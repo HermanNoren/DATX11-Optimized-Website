@@ -39,6 +39,7 @@ export default function NavigationLink({
       <NavigationLinkSkeleton
         icon={icon}
         text={text}
+        light={light}
         textClassName={textClassName}
       />
     </Link>

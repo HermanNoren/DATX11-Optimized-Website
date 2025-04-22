@@ -16,7 +16,6 @@ export interface Link {
   href: string;
 }
 
-
 export default function Header() {
   const links: Link[] = [
     {
@@ -35,9 +34,7 @@ export default function Header() {
       name: "FAQ",
       href: "/faq",
     },
-
   ];
-
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
@@ -106,21 +103,21 @@ export default function Header() {
   });
 
   return (
-    <header className="fixed top-0 left-0 w-full z-100">
-      <div className="container w-full flex pt-container-padding">
-        <nav className="flex justify-start flex-1">
+    <header className="fixed top-0 left-0 w-full z-100 ">
+      <div className="container w-full flex pt-container-padding ">
+        <nav className="flex justify-start flex-1 ">
           <NavigationLink
             href="/"
             text="deCube"
             icon={<Boxes strokeWidth={0.75} className="size-7" />}
-            className="flex gap-2 escape-hatch"
+            className="flex gap-2 escape-hatch "
           ></NavigationLink>
         </nav>
         <nav className="flex justify-center flex-1">
           <ul className="flex gap-4 self-center">
             {links.map((link, i) => {
               return (
-                <li key={i} className="uppercase flex overflow-hidden">
+                <li key={i} className="uppercase flex overflow-hidden ">
                   <NavigationLink
                     href={link.href}
                     text={link.name}

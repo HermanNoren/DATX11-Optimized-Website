@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import AstroBlur from "@/imgs/AstrolightBlurry.png"
+import AstroBlur from "@/imgs/AstrolightBlurry.png";
 
 export default function AstrolightHero() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -19,11 +19,15 @@ export default function AstrolightHero() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
-      <Image 
-        src={AstroBlur}
-        alt="Astrolight Background"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0 scale-105"
-      />
+      <div className="container pt-24 pb-container-padding absolute w-full h-full ">
+        <div className="w-full h-full overflow-hidden">
+          <Image
+            src={AstroBlur}
+            alt="Astrolight Background"
+            className=" top-0 left-0 w-full h-full object-cover z-0 scale-105"
+          />
+        </div>
+      </div>
 
       {/* Centered Video Container + Text Overflowing Bottom */}
       <div className="absolute top-1/2 left-1/2 w-[45em] aspect-video -translate-x-1/2 -translate-y-1/2 z-10">
@@ -34,15 +38,13 @@ export default function AstrolightHero() {
           loop
           playsInline
         >
-          <source
-            src="/AstrolightBlenderAnimation.mp4"
-            type="video/mp4"
-          />
+          <source src="/AstrolightBlenderAnimation.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <h1
           ref={textRef}
-          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-[60%] text-white text-9xl font-light tracking-wide text-center z-20">
+          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-[60%] text-white text-9xl font-light tracking-wide text-center z-20"
+        >
           ASTROLIGHT
         </h1>
       </div>
