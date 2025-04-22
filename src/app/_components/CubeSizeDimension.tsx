@@ -10,9 +10,10 @@ export default function CubeSizeDimension(props: {
       <span ref={props.ref} className="flex flex-wrap h-4 leading-[1.25em]">
         {words.map((word, i) => {
           const chars = word.split("");
+          const isLastWord = i === words.length - 1;
 
           return (
-            <span key={i} className="relative flex mr-1 overflow-hidden">
+            <span key={i} className="relative flex overflow-hidden">
               {chars.map((char, i) => {
                 return (
                   <span
@@ -24,6 +25,7 @@ export default function CubeSizeDimension(props: {
                   </span>
                 );
               })}
+              {isLastWord ? null : <>&nbsp;</>}
             </span>
           );
         })}
