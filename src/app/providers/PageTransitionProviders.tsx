@@ -12,9 +12,9 @@ interface PageTransitionProvidersProps {
 export default function PageTransitionProviders({
   children,
 }: PageTransitionProvidersProps) {
-  const numOfDivs = 30;
+  const numOfDivs = 20;
   const stagger = -0.02;
-  const duration = 0.3;
+  const duration = 0.4;
   const ease = "pow4.inOut";
 
   const transitionContainer = useRef<HTMLDivElement>(null);
@@ -95,7 +95,7 @@ export default function PageTransitionProviders({
           { y: "105%" },
           {
             y: "0%",
-            duration: 0.45,
+            duration: 0.5,
             stagger: 0.02,
             ease: ease,
             delay: 0.2,
