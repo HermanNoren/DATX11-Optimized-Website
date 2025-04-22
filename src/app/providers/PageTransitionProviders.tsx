@@ -14,7 +14,7 @@ export default function PageTransitionProviders({
 }: PageTransitionProvidersProps) {
   const numOfDivs = 30;
   const stagger = -0.02;
-  const duration = 0.5;
+  const duration = 0.3;
   const ease = "pow4.inOut";
 
   const transitionContainer = useRef<HTMLDivElement>(null);
@@ -95,10 +95,10 @@ export default function PageTransitionProviders({
           { y: "105%" },
           {
             y: "0%",
-            duration: 1,
+            duration: 0.45,
             stagger: 0.02,
             ease: ease,
-            delay: 0.3,
+            delay: 0.2,
           }
         );
 
@@ -184,7 +184,7 @@ export default function PageTransitionProviders({
         ))}
         <div
           id="transitionTitleDiv"
-          className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-7xl uppercase flex text-foreground z-[999] overflow-hidden select-none pointer-events-none"
+          className="fixed top-[50%] translate-y-[-50%] w-screen text-center text-7xl uppercase flex justify-center text-foreground z-[999] overflow-hidden select-none pointer-events-none"
         ></div>
       </div>
     </TransitionRouter>
