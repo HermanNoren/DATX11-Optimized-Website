@@ -70,11 +70,10 @@ export default function CTA() {
               );
             })}
           </h2>
-          <p className="w-140 text-end">
-            aksdf asdfkjasdfk iasdkf asdk fas dkf askdf kasdklf aslkd faklsd
-            faksdf asdfkjasdfk iasdkf asdk fas dkf askdf kasdklf aslkd faklsd f
+          <p className="w-125 text-end">
+          JOIN THE FAMILY OF CUBIC PERFECTION TODAY BY SECURING YOUR OWN ASTROLIGHT CUBE! 
           </p>
-          <Button as={Link} href="/products" className="uppercase w-96">
+          <Button as={Link} href="/products" className="uppercase w-80">
             Buy Now
           </Button>
         </div>
