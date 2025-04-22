@@ -43,7 +43,7 @@ export default function AstrolightHero() {
         </video>
         <h1
           ref={textRef}
-          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-[60%] text-white text-9xl font-light tracking-wide text-center z-20"
+          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-[60%] text-white text-8xl font-light tracking-wide text-center z-20"
         >
           ASTROLIGHT
         </h1>
