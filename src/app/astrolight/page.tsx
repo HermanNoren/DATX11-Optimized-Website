@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import AstrolightHero from "./_components/AstrolightHero";
 import BornBeyondEarth from "./_components/BornBeyondEarth";
@@ -13,10 +11,12 @@ export default function AstrolightPage() {
     <>
       <AstrolightHero />
       <BornBeyondEarth />
-      <div className="w-screen h-90 "><AstrolightScene scale={0.5}/></div>
-      <FourTextSections/>
-      <BuyNowSection/>
-      <Footer/>
+      <div className="w-screen h-90 ">
+        <AstrolightScene scale={0.5} />
+      </div>
+      <FourTextSections />
+      <BuyNowSection />
+      <Footer />
     </>
   );
 }

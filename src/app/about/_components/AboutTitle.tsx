@@ -1,5 +1,3 @@
-"use client";
-
 export default function AboutTitle() {
   return (
     <section className="relative w-full overflow-hidden pt-[10em] ">

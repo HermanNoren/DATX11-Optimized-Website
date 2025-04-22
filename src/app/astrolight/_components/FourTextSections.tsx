@@ -1,5 +1,3 @@
-"use client";
-
 import MaskText from "@/components/MaskText";
 
 export default function FourTextSections() {

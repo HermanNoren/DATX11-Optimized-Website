@@ -1,5 +1,3 @@
-"use client";
-
 import Button from "@/components/Button";
 import Link from "next/link";
 
@@ -21,7 +19,6 @@ export default function BuyNowSection() {
           Your browser does not support the video tag.
         </video>
 
-
         <div className="absolute left-[1em] top-1/2 -translate-y-1/2 z-10">
           <h2 className="text-white text-7xl font-light tracking-wider [writing-mode:vertical-rl] rotate-180">
             deCube
@@ -32,14 +29,16 @@ export default function BuyNowSection() {
           <h2 className="uppercase text-lg font-normal">
             LIMITED. ICONIC. UNEARTHLY.
           </h2>
-          <p
-            className="uppercase font-light text-sm"
-          >
-            This is not just a material. It is an experience, a relic, a vision cast in metal. Astrolight is the culmination of exploration, craftsmanship, and cosmic wonder.
+          <p className="uppercase font-light text-sm">
+            This is not just a material. It is an experience, a relic, a vision
+            cast in metal. Astrolight is the culmination of exploration,
+            craftsmanship, and cosmic wonder.
           </p>
 
           <div className="mt-2 px-9">
-            <Button as={Link} href="/products" >BUY NOW</Button>
+            <Button as={Link} href="/products">
+              BUY NOW
+            </Button>
           </div>
         </div>
       </div>

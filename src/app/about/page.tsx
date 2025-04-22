@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import AboutTitle from "./_components/AboutTitle";
 import ScrollRevealText from "./_components/ScrollRevealText";
@@ -9,14 +7,14 @@ import CeoQuote from "./_components/CeoQuote";
 import Footer from "@/components/footer/Footer";
 
 export default function AboutPage() {
-    return (
-      <section>
-        <AboutTitle/>
-        <ScrollRevealText/>
-        <ParallaxImageSection/>
-        <RecievingProduct/>
-        <CeoQuote/>
-        <Footer/>
-      </section>
-    );
+  return (
+    <>
+      <AboutTitle />
+      <ScrollRevealText />
+      <ParallaxImageSection />
+      <RecievingProduct />
+      <CeoQuote />
+      <Footer />
+    </>
+  );
 }

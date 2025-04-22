@@ -1,5 +1,3 @@
-"use client";
-
 import Button from "@/components/Button";
 import Link from "next/link";
 
@@ -30,11 +28,11 @@ export default function CeoQuote() {
             “DESIGNED SPECIFICALLY FOR COLLECTORS, PIONEERS, AND VISIONARIES,
             OWNING A DECUBE MEANS POSSESSING SOMETHING TRULY EXTRAORDINARY.”
             &nbsp;
-            <span className="not-italic font-normal">
-              – CEO OF DECUBE
-            </span>
+            <span className="not-italic font-normal">– CEO OF DECUBE</span>
           </p>
-          <Button className= "w-50" as={Link} href={"/products"}> BUY NOW </Button> 
+          <Button className="w-50" as={Link} href={"/products"}>
+            BUY NOW
+          </Button>
         </div>
       </div>
     </section>
