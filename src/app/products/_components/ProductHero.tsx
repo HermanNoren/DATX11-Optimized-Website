@@ -2,7 +2,7 @@ import ParallaxScroll from "@/components/ParallaxScroll";
 
 export default function ProductHero() {
   return (
-    <section className="w-full flex flex-col items-center justify-center px-[2em] py-[8em]">
+    <section className="w-full flex flex-col items-center justify-center px-[2em] py-[10em]">
       {/* Video Container */}
       <div className="relative w-full max-w-3xl aspect-video overflow-hidden">
         <ParallaxScroll>
@@ -23,12 +23,7 @@ export default function ProductHero() {
         x{/* Heading */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pb-[0.5em] z-10 text-white">
           <h1
-            className="text-center font-light tracking-wide leading-none"
-            style={{
-              fontSize: "var(--text-8xl)",
-              lineHeight: "var(--text-8xl--line-height)",
-            }}
-          >
+            className="text-white text-8xl font-light text-center leading-none tracking-wide whitespace-nowrap">
             PRODUCTS
           </h1>
         </div>
