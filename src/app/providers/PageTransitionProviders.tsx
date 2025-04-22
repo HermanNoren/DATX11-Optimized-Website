@@ -3,6 +3,7 @@
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { TransitionRouter } from "next-transition-router";
+import { usePathname } from "next/navigation";
 import { useRef } from "react";
 
 interface PageTransitionProvidersProps {
@@ -18,6 +19,7 @@ export default function PageTransitionProviders({
   const ease = "pow4.inOut";
 
   const transitionContainer = useRef<HTMLDivElement>(null);
+  const toRef = useRef<string | undefined>("");
 
   const transitionTitles = new Map<string, string>();
   transitionTitles.set("/", "Home");
@@ -33,6 +35,7 @@ export default function PageTransitionProviders({
       auto={true}
       leave={(next, from, to) => {
         gsap.set(transitionContainer.current, { zIndex: "999" });
+        toRef.current = to;
 
         const tl = gsap
           .timeline({
@@ -102,6 +105,9 @@ export default function PageTransitionProviders({
         };
       }}
       enter={(next) => {
+        let extraDelay = 0;
+        if (toRef.current === "/") extraDelay = 1;
+
         const tl = gsap
           .timeline({
             onComplete: () => {
@@ -116,7 +122,7 @@ export default function PageTransitionProviders({
               duration: duration,
               stagger: stagger,
               ease: ease,
-              delay: 0.3,
+              delay: 0.3 + extraDelay,
             }
           );
         const tl2 = gsap
@@ -129,7 +135,7 @@ export default function PageTransitionProviders({
               duration: duration,
               stagger: stagger,
               ease: ease,
-              delay: 0.3,
+              delay: 0.3 + extraDelay,
             }
           )
           .call(next, undefined, "<50%");
@@ -145,6 +151,7 @@ export default function PageTransitionProviders({
             opacity: 0,
             duration: 0.5,
             ease: "power4.in",
+            delay: extraDelay,
           }
         );
 
