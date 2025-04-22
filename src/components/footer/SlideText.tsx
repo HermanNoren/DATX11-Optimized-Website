@@ -5,7 +5,7 @@ export default function SlideText() {
   return (
     <>
       <div className="w-screen bg-accent py-container-padding relative z-20 select-none overflow-x-hidden">
-        <VelocityScroll baseVelocity={2} className={"text-background text-6xl"}>
+        <VelocityScroll baseVelocity={2} className={"text-background text-2xl"}>
           {text}
         </VelocityScroll>
       </div>
