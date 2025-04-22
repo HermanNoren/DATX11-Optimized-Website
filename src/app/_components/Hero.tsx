@@ -1,7 +1,6 @@
 import CubeScene from "@/components/3D/CubeScene";
 import { ArrowDown } from "lucide-react";
 
-
 export default function Hero() {
   return (
     <section className="relative w-screen h-lvh z-20">

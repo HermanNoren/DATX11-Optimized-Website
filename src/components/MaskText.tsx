@@ -9,6 +9,7 @@ import { useMemo, useRef } from "react";
 export default function MaskText(
   props: Readonly<{
     phrase: string;
+    children: React.ReactNode;
     className?: string;
     fontSize?: string;
     highlightWords?: string;
@@ -32,7 +33,7 @@ export default function MaskText(
         y: 0,
         rotate: "0deg",
         duration: 1,
-        stagger: props.stagger ? props.stagger : 0.01,
+        stagger: props.stagger ? props.stagger : 0.005,
         ease: "power4.out",
         delay: props.delay ? props.delay : 0,
         scrollTrigger: {
