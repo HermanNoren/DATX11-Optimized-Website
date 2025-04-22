@@ -19,7 +19,7 @@ export default function AboutTitle() {
 
         {/* Title -deCube- at bottom center */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
-          <h1 className="text-white text-[4em] sm:text-[7em] text-9xl font-medium text-center leading-none tracking-wide whitespace-nowrap">
+          <h1 className="text-white text-8xl font-light text-center leading-none tracking-wide whitespace-nowrap">
             -deCube-
           </h1>
         </div>
