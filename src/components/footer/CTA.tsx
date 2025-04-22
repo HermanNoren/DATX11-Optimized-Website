@@ -54,7 +54,7 @@ export default function CTA() {
     >
       <div className="w-full h-lvh grid grid-cols-2 gap-12">
         <div className="absolute inset-0">
-          <CubeScene cubePosition={[1.7, 0, 0]} />
+          <CubeScene cubePosition={[1.7, 0, 0]} cubeSize={0.8} />
         </div>
         <div className="flex flex-col gap-4 justify-center items-end">
           <h2 className="text-9xl flex">
