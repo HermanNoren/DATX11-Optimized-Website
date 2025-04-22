@@ -25,19 +25,23 @@ export default function BurgerMenu(props: {
     if (props.isInCart) return;
     gsap.registerPlugin(ScrollTrigger);
 
+    let timeout: NodeJS.Timeout;
+
     ScrollTrigger.create({
       trigger: document.documentElement,
       start: 0,
       end: 50,
       onLeave: () => {
-        gsap.to(button.current, {
-          scale: 1,
-          duration: 0.5,
-          delay: 1,
-          ease: "power4.out",
-        });
+        timeout = setTimeout(() => {
+          gsap.to(button.current, {
+            scale: 1,
+            duration: 0.5,
+            ease: "power4.out",
+          });
+        }, 1000);
       },
       onEnterBack: () => {
+        if (timeout) clearTimeout(timeout);
         gsap.to(button.current, {
           scale: 0,
           duration: 0.5,
