@@ -2,7 +2,6 @@ import RoomScene from "@/components/3D/RoomScene/RoomScene";
 import Button from "@/components/Button";
 import ClipPathReveal from "@/components/ClipPathReveal";
 import MaskText from "@/components/MaskText";
-import ParallaxScroll from "@/components/ParallaxScroll";
 import Link from "next/link";
 
 export default function CubeShowcase() {
