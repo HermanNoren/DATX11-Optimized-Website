@@ -26,7 +26,7 @@ export default function AstrolightHero() {
       />
 
       {/* Centered Video Container + Text Overflowing Bottom */}
-      <div className="absolute top-1/2 left-1/2 w-[80vw] max-w-[40em] aspect-video -translate-x-1/2 -translate-y-1/2 z-10">
+      <div className="absolute top-1/2 left-1/2 w-[45em] aspect-video -translate-x-1/2 -translate-y-1/2 z-10">
         <video
           className="w-full h-full object-cover"
           autoPlay

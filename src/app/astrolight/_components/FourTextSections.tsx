@@ -6,7 +6,7 @@ export default function FourTextSections() {
   return (
     <section className="w-full px-[2em] py-[5em]">
       <div
-        className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-[5em] gap-y-[4em]"
+        className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-[2em] gap-y-[2em]"
         style={{ maxWidth: "81em" }}
       >
         {/* Section 1 */}

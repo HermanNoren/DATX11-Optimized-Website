@@ -13,7 +13,7 @@ export default function AstrolightPage() {
     <>
       <AstrolightHero />
       <BornBeyondEarth />
-      <div className="w-screen h-90 "><AstrolightScene scale={0.6}/></div>
+      <div className="w-screen h-90 "><AstrolightScene scale={0.5}/></div>
       <FourTextSections/>
       <BuyNowSection/>
       <Footer/>

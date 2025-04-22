@@ -37,7 +37,7 @@ export default function FAQSection() {
       {/* Background Video */}
       <div className="w-full h-full relative">
         <video
-            className="absolute left-[50%] translate-x-[-50%] top-0 items-center w-250 h-auto z-0 "
+            className="absolute left-[50%] translate-x-[-50%] top-0 items-center w-200 h-auto z-0 "
             autoPlay
             muted
             loop
@@ -48,14 +48,14 @@ export default function FAQSection() {
         </video>
 
         {/* Overlay */}
-        <div className="relative pt-20 z-10 w-250 mx-auto px-[2em]">
+        <div className="relative pt-20 z-10 w-200 mx-auto px-[2em]">
             {/* Heading */}
             <h2 className="absolut mt-25 text-white text-center text-4xl font-normal stroke-1 ">
             - FREQUENTLY ASKED QUESTIONS -
             </h2>
 
             {/* FAQ layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[-5] p-[2em]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[-5] p-[1em]">
             {/* Questions */}
             <div className="relative w-[calc(100%+3.5em)] space-y-[em] py-5 z-2">
                 {faqs.map((faq, index) => (
@@ -92,8 +92,8 @@ export default function FAQSection() {
 
             {/* Answer */}
             <div className="relative  text-black whitespace-pre-line p-[1.5em] bg-[#D9D9D9] z-1">
-                <h3 className="mb-4 mt-5 ml-14 text-xl font-normal uppercase">{faqs[selectedIndex].question}</h3>
-                <p className="italic font light text-sm ml-20">{faqs[selectedIndex].answer}</p>
+                <h3 className="mb-4 mt-5 ml-15 text-base font-normal uppercase">{faqs[selectedIndex].question}</h3>
+                <p className="italic font light text-sm ml-18 mr-10">{faqs[selectedIndex].answer}</p>
             </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import cubeWindowHybrid from "@/imgs/png/cubeWindow.webp";
 export default function ParallaxImageSection() {
   const cubeLangs = "CUBE/KUB/CUBO/KUUTIO/立方体";
   return (
-    <section className="relative w-screen my-24 p-20">
+    <section className="relative w-screen p-20">
       <div className="relative container is-md h-[55em]">
         <div className="absolute right-50">
           <div className="relative w-80 aspect-[1/1.5]">

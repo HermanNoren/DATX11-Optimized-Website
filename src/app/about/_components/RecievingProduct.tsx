@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function RecievingProduct() {
   return (
-    <section className="w-full py-20 grid place-items-center">
+    <section className="w-full py-30 grid place-items-center">
       <div className="bg-[#D9D9D9] pb-15 w-[50em]">
         {/* Top row: video + heading */}
         <div className="flex flex-col lg:flex-row items-center gap-4 mb-12">
@@ -45,9 +45,8 @@ export default function RecievingProduct() {
           </p>
         </div>
         <div className="mt-10 flex flex-col gap-2 items-center">
-          <p className="font-normal text-xl">ANY QUESTIONS?</p>
-          <Button className="w-70" as={Link} href={"/faq"}>
-            CHECK OUT OUR FAQ
+          <Button className="w-90" as={Link} href={"/faq"}>
+            FOR QUESTIONS, CHECK OUT FAQ
           </Button>
         </div>
       </div>
