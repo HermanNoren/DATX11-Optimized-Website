@@ -262,7 +262,7 @@ export default function SideNav({
           </ul>
 
           <div className="menu-details w-full flex flex-col justify-start items-start gap-5 px-8">
-            <p className="p-small fade-target text-sm">Socials</p>
+            <p className="p-small fade-target text-sm">Socials:</p>
             <div className="socials-row flex justify-between w-full">
               {socials.map((social, i) => {
                 return (
