@@ -3,7 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import Cube from "./Cube";
-import { RefObject } from "react";
+import { RefObject, Suspense } from "react";
 import {
   BufferGeometry,
   Group,
@@ -22,14 +22,16 @@ export default function CubeScene(props: {
 }) {
   return (
     <Canvas camera={{ fov: 45 }}>
-      <Cube
-        size={props.cubeSize}
-        position={props.cubePosition}
-        ref={props.cubeRef}
-        groupRef={props.groupRef}
-        isFloating={props.isFloating}
-      />
-      <Environment preset="studio" />
+      <Suspense fallback={null}>
+        <Cube
+          size={props.cubeSize}
+          position={props.cubePosition}
+          ref={props.cubeRef}
+          groupRef={props.groupRef}
+          isFloating={props.isFloating}
+        />
+        <Environment preset="studio" />
+      </Suspense>
     </Canvas>
   );
 }

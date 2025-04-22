@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import MaskText from "@/components/MaskText";
-import Button from "@/components/Button"; 
+import Button from "@/components/Button";
 import { useCart } from "@/app/cart/_components/cartlogic";
 import { Plus } from "lucide-react";
 import gsap from "gsap";
@@ -139,19 +139,15 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 
       {/* Center Image */}
       <div className="flex-1 flex justify-center">
-        <div className="">
-          <ClipPathReveal>
-            <ParallaxScroll factor={0.04}>
-              <Image
-                src={`/${name}.gif`}
-                alt="Product"
-                width={400}
-                height={400}
-                className="w-full aspect-square"
-              />
-            </ParallaxScroll>
-          </ClipPathReveal>
-        </div>
+        <ParallaxScroll factor={0.1}>
+          <Image
+            src={`/${name}.gif`}
+            alt="Product"
+            width={400}
+            height={400}
+            className="w-full aspect-square"
+          />
+        </ParallaxScroll>
       </div>
 
       {/* Right Description */}

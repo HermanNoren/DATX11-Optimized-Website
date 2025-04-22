@@ -139,5 +139,3 @@ export default function Room(props: JSX.IntrinsicElements["group"]) {
     </group>
   );
 }
-
-useGLTF.preload("/room_model.glb");

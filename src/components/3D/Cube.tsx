@@ -1,11 +1,13 @@
 "use client";
 
 import { useFrame, useThree } from "@react-three/fiber";
-import { RefObject, useRef } from "react";
+import { RefObject, useMemo, useRef } from "react";
 import {
+  BoxGeometry,
   BufferGeometry,
   Group,
   Mesh,
+  MeshPhysicalMaterial,
   NormalBufferAttributes,
   Object3DEventMap,
   Vector3,
@@ -24,6 +26,21 @@ export default function Cube(props: {
   const floatSpeed = 1.2;
   const floatAmplitude = 0.2;
   const d = useRef<number>(0);
+
+  const geometry = useMemo(() => new BoxGeometry(), []);
+  const material = useMemo(
+    () =>
+      new MeshPhysicalMaterial({
+        metalness: 1,
+        roughness: 0.01,
+        reflectivity: 1,
+        clearcoat: 1,
+        clearcoatRoughness: 0,
+        color: "white",
+        toneMapped: false,
+      }),
+    []
+  );
 
   useFrame((state, delta) => {
     const ref = props.ref ? props.ref : mesh;
@@ -51,18 +68,9 @@ export default function Cube(props: {
         ref={props.ref ? props.ref : mesh}
         scale={props.size ? props.size : 1}
         position={props.position ?? [0, 0, 0]}
-      >
-        <boxGeometry />
-        <meshPhysicalMaterial
-          metalness={1}
-          roughness={0.01}
-          reflectivity={1}
-          clearcoat={1}
-          clearcoatRoughness={0}
-          color="white"
-          toneMapped={false}
-        />
-      </mesh>
+        geometry={geometry}
+        material={material}
+      ></mesh>
     </group>
   );
 }

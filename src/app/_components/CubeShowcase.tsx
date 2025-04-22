@@ -1,4 +1,4 @@
-import RoomScene from "@/components/3D/RoomScene/RoomScene";
+import LazyRoomScene from "@/components/3D/RoomScene/LazyRoomScene";
 import Button from "@/components/Button";
 import ClipPathReveal from "@/components/ClipPathReveal";
 import MaskText from "@/components/MaskText";
@@ -28,7 +28,7 @@ standard.`;
         </div>
         <div className="w-full aspect-[2/1.5] hover:cursor-grab">
           <ClipPathReveal>
-            <RoomScene />
+            <LazyRoomScene />
           </ClipPathReveal>
         </div>
       </div>

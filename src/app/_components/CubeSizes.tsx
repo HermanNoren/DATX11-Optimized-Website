@@ -211,18 +211,6 @@ export default function CubeSizes() {
     });
   }
 
-  function aniamteCubeOut() {
-    if (!cube.current) return;
-
-    gsap.to(cube.current.scale, {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 1,
-      ease: "power4.in",
-    });
-  }
-
   type yPositions = "100%" | "0" | "-100%";
 
   function animateText(
@@ -258,24 +246,6 @@ export default function CubeSizes() {
       stagger: 0.002,
       ease: "power2.out",
     });
-  }
-
-  function animateTextScrollOut() {
-    const ref = descRefs[currentID.current];
-    if (!ref.current) return;
-
-    const text = ref.current.querySelectorAll("#sizeDescText");
-
-    gsap.fromTo(
-      text,
-      { y: "0" },
-      {
-        y: "100%",
-        duration: 0.5,
-        stagger: -0.002,
-        ease: "power2.out",
-      }
-    );
   }
 
   function animateDimensionScrollIn() {
@@ -321,23 +291,6 @@ export default function CubeSizes() {
       stagger: 0.05,
       ease: "power2.out",
     });
-  }
-
-  function animateTitleScrollOut() {
-    if (!title.current) return;
-
-    const text = title.current.querySelectorAll("#sizeTitleText");
-
-    gsap.fromTo(
-      text,
-      { y: "0" },
-      {
-        y: "100%",
-        duration: 0.5,
-        stagger: -0.05,
-        ease: "power2.in",
-      }
-    );
   }
 
   function animateButtonsScrollIn(ref: RefObject<HTMLDivElement | null>) {
@@ -435,23 +388,6 @@ export default function CubeSizes() {
           animateTitleScrollIn();
 
           setHasAnimated(true);
-        },
-        onLeaveBack: () => {
-          return;
-          isAnimatingButtons.current = true;
-          setTimeout(() => {
-            isAnimatingButtons.current = false;
-          }, 800);
-          aniamteCubeOut();
-          const indicatorRef = buttonIndicatorRefs[currentID.current];
-          gsap.to(indicatorRef.current, {
-            clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-            duration: 0.5,
-            ease: "power4.in",
-          });
-          animateTextScrollOut();
-          animateDimensionScrollOut();
-          animateTitleScrollOut();
         },
       });
     },

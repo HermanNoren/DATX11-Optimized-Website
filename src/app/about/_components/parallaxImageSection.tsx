@@ -1,6 +1,6 @@
 import MaskText from "@/components/MaskText";
 import ParallaxImage from "@/components/ParallaxImage";
-import cubeChairPainting from "@/imgs/png/cubeChairPaintings.webp"
+import cubeChairPainting from "@/imgs/png/cubeChairPaintings.webp";
 import cubeWindowHybrid from "@/imgs/png/cubeWindow.webp";
 
 export default function ParallaxImageSection() {
@@ -24,14 +24,16 @@ export default function ParallaxImageSection() {
             <span className="">{cubeLangs}</span>
           </div>
         </div>
-        <p className="absolute top-7 left-35 w-[28em] text-xl z-20 text-end">
-          <h1 className="text-4xl">THE VISION</h1>
-          <MaskText
-            stagger={0.005}
-            phrase="OUR TEAM IS OBSESSED WITH MINIMALISM, SYMMETRY, AND MATERIAL INNOVATION—PUSHING THE BOUNDARIES 
+        <div className="absolute top-7 left-35 w-[28em] text-xl z-20 text-end">
+          <h2 className="text-4xl">THE VISION</h2>
+          <p>
+            <MaskText
+              stagger={0.005}
+              phrase="OUR TEAM IS OBSESSED WITH MINIMALISM, SYMMETRY, AND MATERIAL INNOVATION—PUSHING THE BOUNDARIES 
             OF DESIGN TO DELIVER PIECES THAT EMBODY SOPHISTICATION AND EXCLUSIVITY."
-          />
-        </p>
+            />
+          </p>
+        </div>
         <p className="absolute top-[30em] right-31 w-[28em] text-xl z-20">
           <MaskText
             stagger={0.005}
