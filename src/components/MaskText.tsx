@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 export default function MaskText(
   props: Readonly<{
@@ -44,12 +44,17 @@ export default function MaskText(
     );
   }, []);
 
-  const words = props.phrase.split(" ");
-  const hWords = props.highlightWords?.split(" ");
+  const words = useMemo(() => props.phrase.split(" "), [props.phrase]);
+  const hWords = useMemo(
+    () => props.highlightWords?.split(" "),
+    [props.highlightWords]
+  );
 
   return (
     <span ref={trigger} className="relative">
       {words.map((word, i) => {
+        const isLastWord = i === words.length - 1;
+
         return (
           <span
             key={i}
@@ -63,12 +68,12 @@ export default function MaskText(
               className={cn(
                 "relative inline-flex origin-top-left",
                 props.fontSize,
-                hWords?.includes(word) ? props.highlightColor : "",
-                words.length === i + 1 ? "" : "mr-1"
+                hWords?.includes(word) ? props.highlightColor : ""
               )}
             >
               {word}
             </span>
+            {isLastWord ? null : <>&nbsp;</>}
           </span>
         );
       })}
