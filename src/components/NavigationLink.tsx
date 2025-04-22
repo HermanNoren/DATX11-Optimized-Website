@@ -20,7 +20,6 @@ type NavLinkProps = {
 
 export default function NavigationLink({
   icon,
-  light,
   text,
   className,
   href,

@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/utils/cn";
 import { useLenis } from "lenis/react";
 import { createContext, useContext, useEffect, useState } from "react";
 
