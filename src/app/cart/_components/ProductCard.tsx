@@ -1,4 +1,9 @@
+import Image from "next/image";
 import "./ProductCard.css";
+import Button from "@/components/Button";
+import { Check, Cross, Minus, Plus, Trash, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "@/utils/cn";
 
 interface ProductCardProps {
   name: string;
@@ -14,6 +19,112 @@ const formatPrice = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 };
 
+export default function ProductCard({
+  name,
+  price,
+  dimensions,
+  image,
+  quantity,
+  onRemove,
+  onQuantityChange,
+}: ProductCardProps) {
+  const [isActive, setIsActive] = useState(false);
+  function onItemChange(newValue: number) {
+    if (newValue <= 0) {
+      setIsActive(true);
+      return;
+    }
+
+    onQuantityChange(newValue);
+  }
+
+  return (
+    <div className="relative bg-white flex justify-between w-150 p-4 rounded-2xl">
+      <div className="flex w-full gap-8">
+        <Image
+          src={image}
+          width={200}
+          height={200}
+          alt={`${name} Product`}
+          className="size-58"
+        />
+        <div className="w-full h-full flex flex-col justify-center">
+          <div className="flex justify-between items-center pb-2">
+            <h2 className="text-4xl ">{name}</h2>
+          </div>
+
+          <p className="text-sm opacity-70">{dimensions}</p>
+          <p className="text-sm opacity-70">{formatPrice(price)} SEK</p>
+          <p className="mt-6 mb-2">
+            Total: {formatPrice(price * quantity)} SEK
+          </p>
+          <div className="flex justify-between items-center p-2 border border-foreground w-fit">
+            <div className="flex gap-4">
+              <button onClick={() => onItemChange((quantity -= 1))}>
+                <Minus strokeWidth={0.75} className="size-6" />
+              </button>
+              <span>{quantity}</span>
+              <button onClick={() => onItemChange((quantity += 1))}>
+                <Plus strokeWidth={0.75} className="size-6" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        className="absolute top-4 right-4"
+        onClick={() => setIsActive(true)}
+      >
+        <X strokeWidth={1} className="size-6" />
+      </button>
+      <Modal
+        isActive={isActive}
+        setIsActive={setIsActive}
+        onRemove={onRemove}
+      />
+    </div>
+  );
+}
+
+interface ModalProps {
+  isActive: boolean;
+  setIsActive: (value: boolean) => void;
+  onRemove: () => void;
+}
+
+function Modal({ isActive, setIsActive, onRemove }: ModalProps) {
+  function onYes() {
+    onRemove();
+    setIsActive(false);
+  }
+  return (
+    <div
+      className={cn(
+        "inset-0 grid place-items-center",
+        isActive ? "fixed" : "hidden"
+      )}
+    >
+      <div
+        onClick={() => setIsActive(false)}
+        className="absolute inset-0 bg-black/50 cursor-pointer"
+      ></div>
+      <div className="relative w-100 gradient-bg p-12 flex flex-col gap-12">
+        <h2 className="text-4xl">Are you sure you want to remove?</h2>
+        <div className="flex justify-between">
+          <Button
+            icon={<Check strokeWidth={1} className="size-6" />}
+            onClick={onYes}
+          >
+            Yes
+          </Button>
+          <Button onClick={() => setIsActive(false)}>No</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/*
 const ProductCard: React.FC<ProductCardProps> = ({
   name,
   price,
@@ -59,3 +170,5 @@ const ProductCard: React.FC<ProductCardProps> = ({
 };
 
 export default ProductCard;
+
+*/

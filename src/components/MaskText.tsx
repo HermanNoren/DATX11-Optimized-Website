@@ -27,9 +27,10 @@ export default function MaskText(
 
     gsap.fromTo(
       trigger.current.querySelectorAll("#maskTextSpan"),
-      { y: "110%" },
+      { y: "110%", rotate: "5deg" },
       {
         y: 0,
+        rotate: "0deg",
         duration: 1,
         stagger: props.stagger ? props.stagger : 0.01,
         ease: "power4.out",
@@ -49,8 +50,6 @@ export default function MaskText(
   return (
     <span ref={trigger} className="relative">
       {words.map((word, i) => {
-        const chars = word.split("");
-
         return (
           <span
             key={i}
@@ -60,27 +59,15 @@ export default function MaskText(
             )}
           >
             <span
+              id="maskTextSpan"
               className={cn(
-                "relative inline-flex",
+                "relative inline-flex origin-top-left",
                 props.fontSize,
                 hWords?.includes(word) ? props.highlightColor : "",
                 words.length === i + 1 ? "" : "mr-1"
               )}
             >
-              {chars.map((char, i) => {
-                return (
-                  <span
-                    id="maskTextSpan"
-                    className={cn(
-                      "relative",
-                      props.upsideDown ? "rotate-z-180 rotate-y-180" : ""
-                    )}
-                    key={i}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
+              {word}
             </span>
           </span>
         );

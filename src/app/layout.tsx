@@ -5,6 +5,7 @@ import { ReactLenis } from "@/utils/lenis";
 import { CartProvider } from "./cart/_components/cartlogic";
 import Header from "@/components/header/Header";
 import StopScrollProvider from "./providers/StopScrollProvider";
+import HeaderProvider from "./providers/HeaderProvider";
 
 export const rhd = Red_Hat_Display({
   subsets: ["latin"],
@@ -27,8 +28,7 @@ export default function RootLayout({
         <body className={`${rhd.className} relative antialiased`}>
           <StopScrollProvider>
             <CartProvider>
-              <Header />
-              {children}
+              <HeaderProvider>{children}</HeaderProvider>
             </CartProvider>
           </StopScrollProvider>
         </body>

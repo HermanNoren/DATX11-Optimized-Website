@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import { useCart } from "./_components/cartlogic";
 import "./cartpage.css";
 import ProductCard from "./_components/ProductCard";
+import Button from "@/components/Button";
 
 interface Product {
   id: string;
@@ -46,7 +47,7 @@ const formatPrice = (price: number) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 };
 
-const CheckoutPage: React.FC = () => {
+export default function Cart() {
   const {
     cartItems,
     addItem: addToCart,
@@ -54,13 +55,56 @@ const CheckoutPage: React.FC = () => {
     updateQuantity,
   } = useCart();
 
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
+  const totalPrice = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cartItems]
   );
 
   return (
-    <div className="checkout-page border">
+    <section className="w-screen h-screen">
+      <div className="container grid place-items-center gap-12 pt-section-padding pb-12">
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="text-6xl">Total: {formatPrice(totalPrice)} SEK</h1>
+          <p className="">Worldwide shipping and no returns</p>
+        </div>
+        <div className="">
+          {cartItems.map((item) => (
+            <ProductCard
+              key={item.id}
+              name={item.name}
+              price={item.price}
+              dimensions={item.dimensions}
+              image={item.image}
+              quantity={item.quantity}
+              onRemove={() => removeFromCart(item.id)}
+              onQuantityChange={(quantity) => updateQuantity(item.id, quantity)}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        {totalPrice === 0 ? (
+          <p>Add items to checkout</p>
+        ) : (
+          <Link href="/lastpage">
+            <button className="px-4 py-4 bg-accent text-background font-normal rounded-2xl">
+              CHECKOUT
+            </button>
+          </Link>
+        )}
+
+        <p className="text-xs text-center opacity-70">
+          DISCLAIMER: this isn't a real checkout. pressing the
+          <br />
+          button brings you to the end of the site
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/*
+          <div className="checkout-page">
       <div className="shopping-cart">
         <div className="checkout-header">
           <h2 className="checkout-bag">
@@ -109,7 +153,4 @@ const CheckoutPage: React.FC = () => {
       </div>
       <div className="margin">.</div>
     </div>
-  );
-};
-
-export default CheckoutPage;
+      */
