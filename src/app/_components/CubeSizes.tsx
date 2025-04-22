@@ -56,13 +56,13 @@ export default function CubeSizes() {
     {
       id: 1,
       title: "Regal",
-      size: "15 x 15 x 15 cm",
+      size: "20 x 20 x 20 cm",
       description: `The Regal, a perfect balance of rarity and prestige, the go-to choice for industry leaders and forward-thinkers. Coveted yet attainable, it's the cube that moves industries and closes deals. When a Regal is in your hands, you hold more than metal—you hold progress.`,
     },
     {
       id: 2,
       title: "Imperial",
-      size: "20 x 20 x 20 cm",
+      size: "30 x 30 x 30 cm",
       description: `The Imperial, the largest and boldest, A monolith of Astrolite, commanding attention whether placed in a corporate headquarters, or private collection. Its sheer presence is a testament to those who operate on a grander scale. To own an Imperial is to stake a claim in the future itself.`,
     },
   ];
