@@ -41,6 +41,8 @@ export default function PageTransitionProviders({
           "#pageTransitionDiv0"
         );
 
+        gsap.set(transitionContainer.current, { zIndex: "999" });
+
         const tl = gsap
           .timeline({
             onComplete: next,
@@ -116,17 +118,23 @@ export default function PageTransitionProviders({
           "#pageTransitionDiv0"
         );
 
-        const tl = gsap.timeline().fromTo(
-          divGroup1,
-          { y: "0%" },
-          {
-            y: "105%",
-            duration: duration,
-            stagger: stagger,
-            ease: ease,
-            delay: 0.3,
-          }
-        );
+        const tl = gsap
+          .timeline({
+            onComplete: () => {
+              gsap.set(transitionContainer.current, { zIndex: "-999" });
+            },
+          })
+          .fromTo(
+            divGroup1,
+            { y: "0%" },
+            {
+              y: "105%",
+              duration: duration,
+              stagger: stagger,
+              ease: ease,
+              delay: 0.3,
+            }
+          );
         const tl2 = gsap
           .timeline()
           .fromTo(
@@ -166,10 +174,7 @@ export default function PageTransitionProviders({
       <>{children}</>
       <div
         ref={transitionContainer}
-        className={cn(
-          "fixed inset-0 z-[999] grid pointer-events-none",
-          `grid-rows-${numOfDivs}`
-        )}
+        className={cn("fixed inset-0 z-[-999] grid", `grid-rows-${numOfDivs}`)}
       >
         {Array.from({ length: numOfDivs }).map((_, i) => (
           <div key={i} className="relative h-full overflow-hidden">
