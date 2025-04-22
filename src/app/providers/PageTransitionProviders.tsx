@@ -32,15 +32,6 @@ export default function PageTransitionProviders({
     <TransitionRouter
       auto={true}
       leave={(next, from, to) => {
-        console.log({ from, to });
-
-        const divGroup1 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv1"
-        );
-        const divGroup0 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv0"
-        );
-
         gsap.set(transitionContainer.current, { zIndex: "999" });
 
         const tl = gsap
@@ -48,7 +39,7 @@ export default function PageTransitionProviders({
             onComplete: next,
           })
           .fromTo(
-            divGroup1,
+            "#pageTransitionDiv1",
             { y: "105%" },
             {
               y: "0%",
@@ -59,7 +50,7 @@ export default function PageTransitionProviders({
           );
 
         const tl2 = gsap.timeline().fromTo(
-          divGroup0,
+          "#pageTransitionDiv0",
           { y: "-105%" },
           {
             y: "0%",
@@ -111,13 +102,6 @@ export default function PageTransitionProviders({
         };
       }}
       enter={(next) => {
-        const divGroup1 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv1"
-        );
-        const divGroup0 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv0"
-        );
-
         const tl = gsap
           .timeline({
             onComplete: () => {
@@ -125,7 +109,7 @@ export default function PageTransitionProviders({
             },
           })
           .fromTo(
-            divGroup1,
+            "#pageTransitionDiv1",
             { y: "0%" },
             {
               y: "105%",
@@ -138,7 +122,7 @@ export default function PageTransitionProviders({
         const tl2 = gsap
           .timeline()
           .fromTo(
-            divGroup0,
+            "#pageTransitionDiv0",
             { y: "0%" },
             {
               y: "-105%",

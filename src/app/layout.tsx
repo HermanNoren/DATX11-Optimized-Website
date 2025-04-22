@@ -7,6 +7,7 @@ import Header from "@/components/header/Header";
 import StopScrollProvider from "./providers/StopScrollProvider";
 import HeaderProvider from "./providers/HeaderProvider";
 import PageTransitionProviders from "./providers/PageTransitionProviders";
+import LoadingScreenProviders from "./providers/LoadingScreenProvider";
 
 export const rhd = Red_Hat_Display({
   subsets: ["latin"],
@@ -29,9 +30,11 @@ export default function RootLayout({
         <body className={`${rhd.className} antialiased`}>
           <StopScrollProvider>
             <CartProvider>
-              <PageTransitionProviders>
-                <HeaderProvider>{children}</HeaderProvider>
-              </PageTransitionProviders>
+              <LoadingScreenProviders>
+                <PageTransitionProviders>
+                  <HeaderProvider>{children}</HeaderProvider>
+                </PageTransitionProviders>
+              </LoadingScreenProviders>
             </CartProvider>
           </StopScrollProvider>
         </body>
