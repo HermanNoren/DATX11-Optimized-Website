@@ -3,7 +3,6 @@
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { TransitionRouter } from "next-transition-router";
-import { usePathname } from "next/navigation";
 import { useRef } from "react";
 
 interface PageTransitionProvidersProps {

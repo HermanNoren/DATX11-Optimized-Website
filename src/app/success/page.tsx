@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Boxes } from "lucide-react";
 import Button from "@/components/Button";
+import { useHeader } from "../providers/HeaderProvider";
 
 export default function Success() {
+  const { setActiveIndex } = useHeader();
   return (
     <div className="w-screen h-screen">
       <div className="container w-full h-full grid place-items-center">
@@ -16,7 +20,7 @@ export default function Success() {
             </h1>
           </div>
 
-          <Button as={Link} href={"/"}>
+          <Button as={Link} href={"/"} onClick={() => setActiveIndex(0)}>
             BACK TO HOME
           </Button>
         </div>

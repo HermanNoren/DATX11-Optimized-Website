@@ -26,7 +26,10 @@ standard.`;
             READ MORE
           </Button>
         </div>
-        <div className="w-full aspect-[2/1.5] hover:cursor-grab">
+        <div className="relative w-full aspect-[2/1.5] hover:cursor-grab">
+          <span className="text-sm absolute top-0 right-0 translate-y-[-100%] uppercase opacity-50">
+            Drag to explore
+          </span>
           <ClipPathReveal>
             <LazyRoomScene />
           </ClipPathReveal>

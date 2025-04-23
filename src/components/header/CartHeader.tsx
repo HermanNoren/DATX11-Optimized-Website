@@ -17,7 +17,7 @@ export default function CartHeader() {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
-  const { links } = useHeader();
+  const { links, prevUrl } = useHeader();
 
   useEffect(() => {
     setScrollDisabled(isActive);
@@ -28,8 +28,7 @@ export default function CartHeader() {
       <div className="container w-full flex pt-container-padding">
         <nav className="flex justify-start flex-1">
           <NavigationLink
-            href="#"
-            onClick={() => history.back()}
+            href={prevUrl}
             text="Back"
             icon={<ArrowLeft strokeWidth={0.75} className="size-7" />}
             className="flex gap-2 uppercase"

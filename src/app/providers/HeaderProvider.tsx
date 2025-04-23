@@ -3,7 +3,7 @@
 import CartHeader from "@/components/header/CartHeader";
 import Header from "@/components/header/Header";
 import { usePathname } from "next/navigation";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface HeaderProviderProps {
   children: React.ReactNode;
@@ -18,6 +18,7 @@ interface HeaderContext {
   links: Link[];
   activeIndex: number;
   setActiveIndex: (value: number) => void;
+  prevUrl: string;
 }
 
 const HeaderConditions = createContext<HeaderContext | undefined>(undefined);
@@ -43,6 +44,14 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
   ];
 
   const pathname = usePathname();
+  const [prevUrl, setPrevUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    setPrevUrl(currentUrl);
+    setCurrentUrl(pathname);
+  }, [pathname]);
+
   const linkUrls = [];
   for (const link of links) {
     linkUrls.push(link.href);
@@ -59,10 +68,12 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
   else header = <Header />;
   return (
     <>
-      <HeaderConditions.Provider value={{ links, activeIndex, setActiveIndex }}>
+      <HeaderConditions.Provider
+        value={{ links, activeIndex, setActiveIndex, prevUrl }}
+      >
         {header}
+        {children}
       </HeaderConditions.Provider>
-      {children}
     </>
   );
 }
