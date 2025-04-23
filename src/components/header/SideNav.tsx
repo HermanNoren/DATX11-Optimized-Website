@@ -1,15 +1,11 @@
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useRef } from "react";
 import NavigationLink from "../NavigationLink";
-import { Link } from "./Header";
-import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
-import { link } from "fs";
 import { socials } from "@/utils/socials";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
-import CartButton from "./CartButton";
 import { useCart } from "@/app/cart/_components/cartlogic";
-import { usePathname } from "next/navigation";
+import { Link, useHeader } from "@/app/providers/HeaderProvider";
 
 interface SideNavProps {
   links: Link[];
@@ -27,7 +23,7 @@ export default function SideNav({
   setIsAnimating,
 }: SideNavProps) {
   const navRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
+  const { activeIndex, setActiveIndex } = useHeader();
   const { cartCount } = useCart();
   const linkUrls = [];
   for (const link of links) {
@@ -35,7 +31,6 @@ export default function SideNav({
   }
   linkUrls.push("/products");
   linkUrls.push("/cart");
-  const activeIndex = linkUrls.findIndex((url) => url === pathname);
 
   const indicatorRefs = useRef(
     Array.from({ length: links.length + 2 }, () => createRef<HTMLDivElement>())
@@ -65,7 +60,7 @@ export default function SideNav({
       tl.clear()
         .set(nav, { display: "block" })
         .set(menu, { xPercent: 0 })
-        .set(indicatorRefs.current[activeIndex].current, { scale: 0 })
+        .set("#sideNavLinkIndicator", { scale: 0 })
         .fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1 }, "<")
         .fromTo(
           bgPanels,
@@ -82,10 +77,9 @@ export default function SideNav({
         .fromTo(
           indicatorRefs.current[activeIndex].current,
           { scale: 0 },
-          { scale: 1 },
+          { scale: 1, delay: 0.3 },
           "<"
         )
-        .fromTo(cartIndicator, { scale: 0 }, { scale: 1 }, "<")
         .fromTo(
           fadeTargets,
           { autoAlpha: 0, yPercent: 50 },
@@ -99,6 +93,7 @@ export default function SideNav({
           },
           "<+=0.2"
         )
+        .fromTo(cartIndicator, { scale: 0 }, { scale: 1 }, "<")
         .play();
     };
 
@@ -174,11 +169,10 @@ export default function SideNav({
           <ul className="menu-list flex flex-col gap-8 w-full">
             <div className="flex flex-col">
               {links.map((link, i) => {
-                const isActive = link.href === pathname;
-
                 return (
                   <li key={i} className="flex relative pl-8">
                     <div
+                      id="sideNavLinkIndicator"
                       ref={indicatorRefs.current[i]}
                       className="absolute right-8 top-[50%] translate-y-[-50%] will-change-transform scale-0"
                     >
@@ -187,6 +181,7 @@ export default function SideNav({
                     <div
                       onMouseEnter={() => onMouseEnter(i)}
                       onMouseLeave={onMouseLeave}
+                      onClick={() => setActiveIndex(i)}
                       className="menu-list-item flex overflow-hidden"
                     >
                       <NavigationLink
@@ -215,6 +210,9 @@ export default function SideNav({
                     onMouseEnter(indicatorRefs.current.length - 2)
                   }
                   onMouseLeave={onMouseLeave}
+                  onClick={() =>
+                    setActiveIndex(indicatorRefs.current.length - 2)
+                  }
                   className="menu-list-item flex overflow-hidden"
                 >
                   <NavigationLink
@@ -236,8 +234,10 @@ export default function SideNav({
                 </div>
                 <div className="relative">
                   {cartCount > 0 ? (
-                    <div className="absolute top-0 translate-y-[-25%] right-0 translate-x-[50%] rounded-full bg-white size-5 grid place-items-center z-90 side-nav-cart-indicator">
-                      <span className="text-xs leading-1">{cartCount}</span>
+                    <div className="absolute top-0 -right-6 rounded-full size-5 flex justify-center items-center z-90 side-nav-cart-indicator">
+                      <span className="text-2xl select-none pointer-events-none">
+                        {cartCount}
+                      </span>
                     </div>
                   ) : null}
                   <div
@@ -245,6 +245,9 @@ export default function SideNav({
                       onMouseEnter(indicatorRefs.current.length - 1)
                     }
                     onMouseLeave={onMouseLeave}
+                    onClick={() =>
+                      setActiveIndex(indicatorRefs.current.length - 1)
+                    }
                     className="menu-list-item flex overflow-hidden"
                   >
                     <NavigationLink
@@ -260,7 +263,7 @@ export default function SideNav({
           </ul>
 
           <div className="menu-details w-full flex flex-col justify-start items-start gap-5 px-8">
-            <p className="p-small fade-target text-sm">Socials</p>
+            <p className="p-small fade-target text-sm">Socials:</p>
             <div className="socials-row flex justify-between w-full">
               {socials.map((social, i) => {
                 return (

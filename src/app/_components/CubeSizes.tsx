@@ -25,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 type availableCubeSizes = 0.7 | 1 | 1.2;
 
 export default function CubeSizes() {
+  const [hasAnimated, setHasAnimated] = useState(false);
   const trigger = useRef<HTMLElement>(null);
   const borderTop = useRef<HTMLDivElement>(null);
   const borderRight = useRef<HTMLDivElement>(null);
@@ -41,7 +42,7 @@ export default function CubeSizes() {
 
   const borderAnimateDuration = 1;
   const borderAnimateEase = "power4.inOut";
-  const borderToggleAction = "play none none reverse";
+  const borderToggleAction = "play none none none";
 
   const triggerAnimPos = "top 25%";
 
@@ -55,13 +56,13 @@ export default function CubeSizes() {
     {
       id: 1,
       title: "Regal",
-      size: "15 x 15 x 15 cm",
+      size: "20 x 20 x 20 cm",
       description: `The Regal, a perfect balance of rarity and prestige, the go-to choice for industry leaders and forward-thinkers. Coveted yet attainable, it's the cube that moves industries and closes deals. When a Regal is in your hands, you hold more than metal—you hold progress.`,
     },
     {
       id: 2,
       title: "Imperial",
-      size: "20 x 20 x 20 cm",
+      size: "30 x 30 x 30 cm",
       description: `The Imperial, the largest and boldest, A monolith of Astrolite, commanding attention whether placed in a corporate headquarters, or private collection. Its sheer presence is a testament to those who operate on a grander scale. To own an Imperial is to stake a claim in the future itself.`,
     },
   ];
@@ -210,18 +211,6 @@ export default function CubeSizes() {
     });
   }
 
-  function aniamteCubeOut() {
-    if (!cube.current) return;
-
-    gsap.to(cube.current.scale, {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 1,
-      ease: "power4.in",
-    });
-  }
-
   type yPositions = "100%" | "0" | "-100%";
 
   function animateText(
@@ -251,34 +240,12 @@ export default function CubeSizes() {
 
     const text = ref.current.querySelectorAll("#sizeDescText");
 
-    gsap.fromTo(
-      text,
-      { y: "100%" },
-      {
-        y: "0",
-        duration: 0.5,
-        stagger: 0.002,
-        ease: "power2.out",
-      }
-    );
-  }
-
-  function animateTextScrollOut() {
-    const ref = descRefs[currentID.current];
-    if (!ref.current) return;
-
-    const text = ref.current.querySelectorAll("#sizeDescText");
-
-    gsap.fromTo(
-      text,
-      { y: "0" },
-      {
-        y: "100%",
-        duration: 0.5,
-        stagger: -0.002,
-        ease: "power2.out",
-      }
-    );
+    gsap.to(text, {
+      y: "0",
+      duration: 0.5,
+      stagger: 0.002,
+      ease: "power2.out",
+    });
   }
 
   function animateDimensionScrollIn() {
@@ -287,16 +254,12 @@ export default function CubeSizes() {
 
     const text = ref.current.querySelectorAll("#sizeDescText");
 
-    gsap.fromTo(
-      text,
-      { y: "100%" },
-      {
-        y: "0",
-        duration: 0.5,
-        stagger: 0.02,
-        ease: "power2.out",
-      }
-    );
+    gsap.to(text, {
+      y: "0",
+      duration: 0.5,
+      stagger: 0.02,
+      ease: "power2.out",
+    });
   }
 
   function animateDimensionScrollOut() {
@@ -322,53 +285,28 @@ export default function CubeSizes() {
 
     const text = title.current.querySelectorAll("#sizeTitleText");
 
-    gsap.fromTo(
-      text,
-      { y: "100%" },
-      {
-        y: "0",
-        duration: 0.5,
-        stagger: 0.02,
-        ease: "power2.out",
-      }
-    );
-  }
-
-  function animateTitleScrollOut() {
-    if (!title.current) return;
-
-    const text = title.current.querySelectorAll("#sizeTitleText");
-
-    gsap.fromTo(
-      text,
-      { y: "0" },
-      {
-        y: "100%",
-        duration: 0.5,
-        stagger: -0.02,
-        ease: "power2.in",
-      }
-    );
+    gsap.to(text, {
+      y: "0",
+      duration: 0.5,
+      stagger: 0.05,
+      ease: "power2.out",
+    });
   }
 
   function animateButtonsScrollIn(ref: RefObject<HTMLDivElement | null>) {
     if (!ref.current) return;
 
-    gsap.fromTo(
-      ref.current,
-      { pointerEvents: "none", userSelect: "none" },
-      {
-        pointerEvents: "auto",
-        userSelect: "auto",
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: trigger.current,
-          start: triggerAnimPos,
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    gsap.to(ref.current, {
+      pointerEvents: "auto",
+      userSelect: "auto",
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: trigger.current,
+        start: triggerAnimPos,
+        toggleActions: "play none none none",
+      },
+    });
 
     const textOver = ref.current.querySelectorAll("#buttonTextOver");
     const textUnder = ref.current.querySelectorAll("#buttonTextUnder");
@@ -384,7 +322,7 @@ export default function CubeSizes() {
         scrollTrigger: {
           trigger: trigger.current,
           start: triggerAnimPos,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -399,7 +337,7 @@ export default function CubeSizes() {
         scrollTrigger: {
           trigger: trigger.current,
           start: triggerAnimPos,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -432,6 +370,8 @@ export default function CubeSizes() {
         trigger: trigger.current,
         start: triggerAnimPos,
         onEnter: () => {
+          if (hasAnimated) return;
+
           isAnimatingButtons.current = true;
           setTimeout(() => {
             isAnimatingButtons.current = false;
@@ -446,22 +386,8 @@ export default function CubeSizes() {
           animateTextScrollIn();
           animateDimensionScrollIn();
           animateTitleScrollIn();
-        },
-        onLeaveBack: () => {
-          isAnimatingButtons.current = true;
-          setTimeout(() => {
-            isAnimatingButtons.current = false;
-          }, 800);
-          aniamteCubeOut();
-          const indicatorRef = buttonIndicatorRefs[currentID.current];
-          gsap.to(indicatorRef.current, {
-            clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-            duration: 0.5,
-            ease: "power4.in",
-          });
-          animateTextScrollOut();
-          animateDimensionScrollOut();
-          animateTitleScrollOut();
+
+          setHasAnimated(true);
         },
       });
     },
@@ -558,15 +484,20 @@ export default function CubeSizes() {
   }
 
   return (
-    <section ref={trigger} className="relative h-lvh z-20 gradient-bg">
+    <section
+      ref={trigger}
+      className="relative py-section-padding z-20 gradient-bg"
+    >
       <div className="container w-full h-full grid grid-cols-2 gap-4">
-        <div className="absolute inset-0">
-          <CubeScene
-            cubeRef={cube}
-            groupRef={cubeGroup}
-            cubePosition={[-1.7, 0, 0]}
-            cubeSize={0}
-          />
+        <div className="absolute container inset-0">
+          <div className="relative w-full h-full">
+            <CubeScene
+              cubeRef={cube}
+              groupRef={cubeGroup}
+              cubePosition={[-1.75, 0, 0]}
+              cubeSize={0}
+            />
+          </div>
         </div>
         <div className="grid place-items-center">
           <div className="relative w-[30em] aspect-square">

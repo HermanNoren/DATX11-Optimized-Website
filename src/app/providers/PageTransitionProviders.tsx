@@ -3,7 +3,7 @@
 import { cn } from "@/utils/cn";
 import gsap from "gsap";
 import { TransitionRouter } from "next-transition-router";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 
 interface PageTransitionProvidersProps {
   children: React.ReactNode;
@@ -18,6 +18,7 @@ export default function PageTransitionProviders({
   const ease = "pow4.inOut";
 
   const transitionContainer = useRef<HTMLDivElement>(null);
+  const toRef = useRef<string | undefined>("");
 
   const transitionTitles = new Map<string, string>();
   transitionTitles.set("/", "Home");
@@ -32,21 +33,15 @@ export default function PageTransitionProviders({
     <TransitionRouter
       auto={true}
       leave={(next, from, to) => {
-        console.log({ from, to });
-
-        const divGroup1 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv1"
-        );
-        const divGroup0 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv0"
-        );
+        gsap.set(transitionContainer.current, { zIndex: "999" });
+        toRef.current = to;
 
         const tl = gsap
           .timeline({
             onComplete: next,
           })
           .fromTo(
-            divGroup1,
+            "#pageTransitionDiv1",
             { y: "105%" },
             {
               y: "0%",
@@ -57,7 +52,7 @@ export default function PageTransitionProviders({
           );
 
         const tl2 = gsap.timeline().fromTo(
-          divGroup0,
+          "#pageTransitionDiv0",
           { y: "-105%" },
           {
             y: "0%",
@@ -109,35 +104,37 @@ export default function PageTransitionProviders({
         };
       }}
       enter={(next) => {
-        const divGroup1 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv1"
-        );
-        const divGroup0 = transitionContainer.current?.querySelectorAll(
-          "#pageTransitionDiv0"
-        );
+        let extraDelay = 0;
+        if (toRef.current === "/") extraDelay = 1;
 
-        const tl = gsap.timeline().fromTo(
-          divGroup1,
-          { y: "0%" },
-          {
-            y: "105%",
-            duration: duration,
-            stagger: stagger,
-            ease: ease,
-            delay: 0.3,
-          }
-        );
+        const tl = gsap
+          .timeline({
+            onComplete: () => {
+              gsap.set(transitionContainer.current, { zIndex: "-999" });
+            },
+          })
+          .fromTo(
+            "#pageTransitionDiv1",
+            { y: "0%" },
+            {
+              y: "105%",
+              duration: duration,
+              stagger: stagger,
+              ease: ease,
+              delay: 0.3 + extraDelay,
+            }
+          );
         const tl2 = gsap
           .timeline()
           .fromTo(
-            divGroup0,
+            "#pageTransitionDiv0",
             { y: "0%" },
             {
               y: "-105%",
               duration: duration,
               stagger: stagger,
               ease: ease,
-              delay: 0.3,
+              delay: 0.3 + extraDelay,
             }
           )
           .call(next, undefined, "<50%");
@@ -153,6 +150,7 @@ export default function PageTransitionProviders({
             opacity: 0,
             duration: 0.5,
             ease: "power4.in",
+            delay: extraDelay,
           }
         );
 
@@ -166,10 +164,7 @@ export default function PageTransitionProviders({
       <>{children}</>
       <div
         ref={transitionContainer}
-        className={cn(
-          "fixed inset-0 z-[999] grid pointer-events-none",
-          `grid-rows-${numOfDivs}`
-        )}
+        className={cn("fixed inset-0 z-[-999] grid", `grid-rows-${numOfDivs}`)}
       >
         {Array.from({ length: numOfDivs }).map((_, i) => (
           <div key={i} className="relative h-full overflow-hidden">

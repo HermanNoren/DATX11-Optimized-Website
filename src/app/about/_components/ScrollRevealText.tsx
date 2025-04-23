@@ -32,7 +32,7 @@ export default function ScrollRevealText() {
 
   return (
     <div
-      className="max-w-[70%] mx-auto text-center text-2xl p-5 opacity-100 overflow-visible "
+      className="max-w-[70%] mx-auto text-center text-xl p-30 opacity-100 overflow-visible"
       ref={textRef}
     >
       <p className="inline-block uppercase">

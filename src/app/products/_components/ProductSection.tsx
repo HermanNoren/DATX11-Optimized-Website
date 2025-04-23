@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import MaskText from "@/components/MaskText";
-import Button from "@/components/Button"; // ✅ Custom Button component
+import Button from "@/components/Button";
 import { useCart } from "@/app/cart/_components/cartlogic";
 import { Plus } from "lucide-react";
 import gsap from "gsap";
@@ -95,16 +95,16 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const isMaxReached = currentQuantity >= 10;
 
   return (
-    <div className="flex justify-between items-start container py-10 mt-16 gap-8 pb-40">
+    <div className="flex justify-between container py-10 mt-16 gap-8 pb-40">
       {/* Left Section */}
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col justify-center">
         <h2 className="text-4xl text-[#404040] mb-1">
           <MaskText stagger={0.005} phrase={name} />
         </h2>
-        <p className="my-2 text-[#404040]">
+        <p className=" text-[#404040]">
           <MaskText stagger={0.005} phrase={`Dimensions: ${dimensions}`} />
         </p>
-        <p className="my-2 text-[#404040]">
+        <p className="mt-2 text-[#404040]">
           <MaskText stagger={0.005} phrase={`Value: ${value} sek`} />
         </p>
 
@@ -139,23 +139,19 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 
       {/* Center Image */}
       <div className="flex-1 flex justify-center">
-        <div className="w-4/5 h-auto">
-          <ClipPathReveal>
-            <ParallaxScroll factor={0.04}>
-              <Image
-                src={`/${name}.gif`}
-                alt="Product"
-                width={400}
-                height={400}
-                className="w-4/5 h-auto"
-              />
-            </ParallaxScroll>
-          </ClipPathReveal>
-        </div>
+        <ParallaxScroll factor={0.1}>
+          <Image
+            src={`/${name}.gif`}
+            alt="Product"
+            width={400}
+            height={400}
+            className="w-full aspect-square"
+          />
+        </ParallaxScroll>
       </div>
 
       {/* Right Description */}
-      <div className="flex-1 text-[#404040] flex justify-end">
+      <div className="flex-1 text-[#404040] flex items-center justify-end">
         <p className="text-right w-3/5">
           <MaskText stagger={0.01} phrase={description} />
         </p>

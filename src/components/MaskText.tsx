@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 export default function MaskText(
   props: Readonly<{
@@ -32,24 +32,29 @@ export default function MaskText(
         y: 0,
         rotate: "0deg",
         duration: 1,
-        stagger: props.stagger ? props.stagger : 0.01,
+        stagger: props.stagger ? props.stagger : 0.005,
         ease: "power4.out",
         delay: props.delay ? props.delay : 0,
         scrollTrigger: {
           trigger: trigger.current,
           start: "top bottom",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none none",
         },
       }
     );
   }, []);
 
-  const words = props.phrase.split(" ");
-  const hWords = props.highlightWords?.split(" ");
+  const words = useMemo(() => props.phrase.split(" "), [props.phrase]);
+  const hWords = useMemo(
+    () => props.highlightWords?.split(" "),
+    [props.highlightWords]
+  );
 
   return (
     <span ref={trigger} className="relative">
       {words.map((word, i) => {
+        const isLastWord = i === words.length - 1;
+
         return (
           <span
             key={i}
@@ -63,12 +68,12 @@ export default function MaskText(
               className={cn(
                 "relative inline-flex origin-top-left",
                 props.fontSize,
-                hWords?.includes(word) ? props.highlightColor : "",
-                words.length === i + 1 ? "" : "mr-1"
+                hWords?.includes(word) ? props.highlightColor : ""
               )}
             >
               {word}
             </span>
+            {isLastWord ? null : <>&nbsp;</>}
           </span>
         );
       })}

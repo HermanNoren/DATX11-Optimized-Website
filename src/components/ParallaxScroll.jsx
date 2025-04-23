@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { useLenis } from "@/utils/lenis";
-import Image from "next/image";
 import { cn } from "@/utils/cn";
 
 const lerp = (start, end, factor) => start + (end - start) * factor;

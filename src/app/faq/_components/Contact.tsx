@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 export default function Contact() {
@@ -9,7 +7,9 @@ export default function Contact() {
         {/* Left Section: Text */}
         <div className="flex flex-col col-span-6 justify-center text-center ">
           <h2 className=" translate-x-[30%] text-7xl font-light uppercase z-10">
-            Any other<br />questions?
+            Any other
+            <br />
+            questions?
           </h2>
           <div className="mt-[2em] space-y-2 text-sm text-right uppercase font-light m-[1em] ">
             <p>+46 123 456 789</p>
@@ -19,8 +19,10 @@ export default function Contact() {
         </div>
 
         {/* Right Section: Image */}
-        <div className="w-full max-w-md col-span-8 relative 
-        ">
+        <div
+          className="w-full max-w-md col-span-8 relative 
+        "
+        >
           <Image
             src="/ChairContact.png"
             alt="Contact Chair"

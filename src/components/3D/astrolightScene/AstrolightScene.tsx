@@ -19,7 +19,7 @@ export default function AstrolightScene({
   position,
 }: AstrolightSceneProps) {
   return (
-    <Canvas shadows camera={{ fov: 45 }}>
+    <Canvas className="hover:cursor-grab" shadows camera={{ fov: 45 }}>
       <AstrolightModel scale={scale} position={position} />
       <CameraControls
         makeDefault
