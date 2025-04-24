@@ -12,16 +12,21 @@ export default function LazyRoomScene() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const handle = (
-      "requestIdleCallback" in window
-        ? requestIdleCallback
-        : (cb: () => void) => setTimeout(cb, 200)
-    )(() => {
+    let handle: number;
+    const callback = () => {
       startTransition(() => setMounted(true));
-    });
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      handle = window.requestIdleCallback(callback);
+      return () => {
+        window.cancelIdleCallback(handle);
+      };
+    }
+
+    handle = window.setTimeout(callback, 200);
     return () => {
-      if ("cancelIdleCallback" in window) cancelIdleCallback(handle);
-      else clearTimeout(handle);
+      window.clearTimeout(handle);
     };
   }, []);
 

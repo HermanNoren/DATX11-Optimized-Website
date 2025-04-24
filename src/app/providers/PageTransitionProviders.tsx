@@ -69,6 +69,7 @@ export default function PageTransitionProviders({
 
         const text = transitionTitles.get(to);
         textDiv.innerHTML = "";
+        if (!text) return;
 
         [...text].forEach((char, index) => {
           const span = document.createElement("span");
