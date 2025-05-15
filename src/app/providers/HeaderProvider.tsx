@@ -52,7 +52,7 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
     setCurrentUrl(pathname);
   }, [pathname]);
 
-  const linkUrls = [];
+  const linkUrls: string[] = [];
   for (const link of links) {
     linkUrls.push(link.href);
   }

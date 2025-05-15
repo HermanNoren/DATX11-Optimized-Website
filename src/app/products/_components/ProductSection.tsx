@@ -95,7 +95,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const isMaxReached = currentQuantity >= 10;
 
   return (
-    <div className="flex justify-between container py-10 mt-16 gap-8 pb-40">
+    <div className="flex justify-between container is-sm gap-8">
       {/* Left Section */}
       <div className="flex-1 flex flex-col justify-center">
         <h2 className="text-4xl text-[#404040] mb-1">

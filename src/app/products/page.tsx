@@ -33,11 +33,13 @@ const ProductPage: React.FC = () => {
 
   return (
     <div className="relative w-full overflow-x-hidden">
-      <div className="gradient-bg relative z-10 ">
+      <div className="gradient-bg relative z-10">
         <ProductHero />
-        {products.map((product) => (
-          <ProductSection key={product.id} {...product} />
-        ))}
+        <div className="flex flex-col gap-48 pb-48">
+          {products.map((product) => (
+            <ProductSection key={product.id} {...product} />
+          ))}
+        </div>
       </div>
       <Footer isOnProducts />
     </div>
