@@ -63,7 +63,11 @@ export default function ProductCard({
                 <Minus strokeWidth={0.75} className="size-6" />
               </button>
               <span>{quantity}</span>
-              <button onClick={() => onItemChange((quantity += 1))}>
+              <button
+                onClick={() =>
+                  onItemChange(quantity >= 10 ? quantity : (quantity += 1))
+                }
+              >
                 <Plus strokeWidth={0.75} className="size-6" />
               </button>
             </div>

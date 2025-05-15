@@ -7,6 +7,7 @@ import { useHeader } from "../providers/HeaderProvider";
 
 export default function Success() {
   const { setActiveIndex } = useHeader();
+
   return (
     <div className="w-screen h-screen">
       <div className="container w-full h-full grid place-items-center">
