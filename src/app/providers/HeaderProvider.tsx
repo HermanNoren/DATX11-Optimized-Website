@@ -16,6 +16,7 @@ export interface Link {
 
 interface HeaderContext {
   links: Link[];
+  linkUrls: string[];
   activeIndex: number;
   setActiveIndex: (value: number) => void;
   prevUrl: string;
@@ -52,7 +53,7 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
     setCurrentUrl(pathname);
   }, [pathname]);
 
-  const linkUrls = [];
+  const linkUrls: string[] = [];
   for (const link of links) {
     linkUrls.push(link.href);
   }
@@ -69,7 +70,7 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
   return (
     <>
       <HeaderConditions.Provider
-        value={{ links, activeIndex, setActiveIndex, prevUrl }}
+        value={{ links, linkUrls, activeIndex, setActiveIndex, prevUrl }}
       >
         {header}
         {children}

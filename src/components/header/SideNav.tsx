@@ -216,7 +216,7 @@ export default function SideNav({
                   className="menu-list-item flex overflow-hidden"
                 >
                   <NavigationLink
-                    text="Buy me"
+                    text="Products"
                     href="/products"
                     className="text-5xl uppercase menu-link"
                     textClassName="menu-link-heading"

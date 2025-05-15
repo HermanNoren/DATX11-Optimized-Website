@@ -7,21 +7,28 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import BurgerMenu from "./BurgerMenu";
 import SideNav from "./SideNav";
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import { useStopScroll } from "@/app/providers/StopScrollProvider";
 import CartButton from "./CartButton";
 import { useHeader } from "@/app/providers/HeaderProvider";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
 
-  const { links, activeIndex, setActiveIndex } = useHeader();
+  const { links, linkUrls } = useHeader();
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  const activeIndex = useMemo(
+    () => [...linkUrls].findIndex((item) => item === pathname),
+    [pathname]
+  );
 
   const indicatorRefs = useRef(
-    Array.from({ length: links.length + 2 }, () => createRef<HTMLDivElement>())
+    Array.from({ length: linkUrls.length }, () => createRef<HTMLDivElement>())
   );
 
   useEffect(() => {
@@ -147,7 +154,7 @@ export default function Header() {
 
   function onClick(i: number) {
     if (isScrolled) return;
-    setActiveIndex(i);
+    //setActiveIndex(i);
   }
 
   return (
@@ -209,7 +216,7 @@ export default function Header() {
               >
                 <NavigationLink
                   href="/products"
-                  text="Buy Me"
+                  text="Products"
                   className="header_stagger_item"
                 ></NavigationLink>
               </div>

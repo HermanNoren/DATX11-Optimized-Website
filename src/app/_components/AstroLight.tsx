@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import InteractiveAstrolightCanvas from "@/components/InteractiveAstroligtCanvas";
+import InteractiveAstrolightCanvas from "@/components/InteractiveSunCanvas.tsx/InteractiveAstrolightCanvas";
 import MaskText from "@/components/MaskText";
 import Link from "next/link";
 

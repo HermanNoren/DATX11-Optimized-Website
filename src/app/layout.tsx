@@ -31,9 +31,7 @@ export default function RootLayout({
           <StopScrollProvider>
             <CartProvider>
               <LoadingScreenProviders>
-                <PageTransitionProviders>
-                  <HeaderProvider>{children}</HeaderProvider>
-                </PageTransitionProviders>
+                <PageTransitionProviders>{children}</PageTransitionProviders>
               </LoadingScreenProviders>
             </CartProvider>
           </StopScrollProvider>

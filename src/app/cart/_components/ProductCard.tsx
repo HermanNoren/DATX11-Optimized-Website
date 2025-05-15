@@ -63,7 +63,11 @@ export default function ProductCard({
                 <Minus strokeWidth={0.75} className="size-6" />
               </button>
               <span>{quantity}</span>
-              <button onClick={() => onItemChange((quantity += 1))}>
+              <button
+                onClick={() =>
+                  onItemChange(quantity >= 10 ? quantity : (quantity += 1))
+                }
+              >
                 <Plus strokeWidth={0.75} className="size-6" />
               </button>
             </div>
@@ -99,7 +103,7 @@ function Modal({ isActive, setIsActive, onRemove }: ModalProps) {
   return (
     <div
       className={cn(
-        "inset-0 grid place-items-center",
+        "inset-0 grid place-items-center relative z-100",
         isActive ? "fixed" : "hidden"
       )}
     >

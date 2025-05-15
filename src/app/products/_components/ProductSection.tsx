@@ -8,7 +8,6 @@ import { Plus } from "lucide-react";
 import gsap from "gsap";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import Image from "next/image";
-import ClipPathReveal from "@/components/ClipPathReveal";
 
 interface ProductSectionProps {
   id: string;
@@ -95,7 +94,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   const isMaxReached = currentQuantity >= 10;
 
   return (
-    <div className="flex justify-between container py-10 mt-16 gap-8 pb-40">
+    <div className="relative flex justify-between container is-sm gap-8">
       {/* Left Section */}
       <div className="flex-1 flex flex-col justify-center">
         <h2 className="text-4xl text-[#404040] mb-1">
@@ -123,7 +122,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
 
         {/* Remove */}
         {currentQuantity > 0 && (
-          <div className="flex items-center gap-2 my-2 text-[#404040]">
+          <div className="absolute bottom-8 flex items-center gap-2 my-2 text-[#404040]">
             <p>
               {currentQuantity} {name} in cart
             </p>
