@@ -39,7 +39,7 @@ const ProductPage: React.FC = () => {
           <ProductSection key={product.id} {...product} />
         ))}
       </div>
-      <Footer />
+      <Footer isOnProducts />
     </div>
   );
 };

@@ -209,7 +209,7 @@ export default function Header() {
               >
                 <NavigationLink
                   href="/products"
-                  text="Buy Me"
+                  text="Products"
                   className="header_stagger_item"
                 ></NavigationLink>
               </div>
