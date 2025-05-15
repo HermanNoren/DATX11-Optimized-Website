@@ -8,7 +8,6 @@ import { Plus } from "lucide-react";
 import gsap from "gsap";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import Image from "next/image";
-import ClipPathReveal from "@/components/ClipPathReveal";
 
 interface ProductSectionProps {
   id: string;
