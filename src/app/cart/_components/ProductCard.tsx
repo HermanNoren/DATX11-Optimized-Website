@@ -99,7 +99,7 @@ function Modal({ isActive, setIsActive, onRemove }: ModalProps) {
   return (
     <div
       className={cn(
-        "inset-0 grid place-items-center",
+        "inset-0 grid place-items-center relative z-100",
         isActive ? "fixed" : "hidden"
       )}
     >
