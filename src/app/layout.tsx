@@ -8,6 +8,7 @@ import StopScrollProvider from "./providers/StopScrollProvider";
 import HeaderProvider from "./providers/HeaderProvider";
 import PageTransitionProviders from "./providers/PageTransitionProviders";
 import LoadingScreenProviders from "./providers/LoadingScreenProvider";
+import NavProvider from "./providers/NavProvider";
 
 export const rhd = Red_Hat_Display({
   subsets: ["latin"],
@@ -31,7 +32,9 @@ export default function RootLayout({
           <StopScrollProvider>
             <CartProvider>
               <LoadingScreenProviders>
-                <PageTransitionProviders>{children}</PageTransitionProviders>
+                <PageTransitionProviders>
+                  <NavProvider>{children}</NavProvider>
+                </PageTransitionProviders>
               </LoadingScreenProviders>
             </CartProvider>
           </StopScrollProvider>

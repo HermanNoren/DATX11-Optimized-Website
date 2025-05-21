@@ -7,6 +7,7 @@ import SideNav from "./SideNav";
 import { useEffect, useState } from "react";
 import { useStopScroll } from "@/app/providers/StopScrollProvider";
 import { useHeader } from "@/app/providers/HeaderProvider";
+import { useNav } from "@/app/providers/NavProvider";
 
 export interface Link {
   name: string;
@@ -17,7 +18,8 @@ export default function CartHeader() {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(true);
   const { setScrollDisabled } = useStopScroll();
-  const { links, prevUrl } = useHeader();
+  const { links } = useHeader();
+  const { prevUrl } = useNav();
 
   useEffect(() => {
     setScrollDisabled(isActive);
