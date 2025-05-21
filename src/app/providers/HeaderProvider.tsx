@@ -19,7 +19,6 @@ interface HeaderContext {
   linkUrls: string[];
   activeIndex: number;
   setActiveIndex: (value: number) => void;
-  prevUrl: string;
 }
 
 const HeaderConditions = createContext<HeaderContext | undefined>(undefined);
@@ -45,13 +44,6 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
   ];
 
   const pathname = usePathname();
-  const [prevUrl, setPrevUrl] = useState("");
-  const [currentUrl, setCurrentUrl] = useState("");
-
-  useEffect(() => {
-    setPrevUrl(currentUrl);
-    setCurrentUrl(pathname);
-  }, [pathname]);
 
   const linkUrls: string[] = [];
   for (const link of links) {
@@ -70,7 +62,7 @@ export default function HeaderProvider({ children }: HeaderProviderProps) {
   return (
     <>
       <HeaderConditions.Provider
-        value={{ links, linkUrls, activeIndex, setActiveIndex, prevUrl }}
+        value={{ links, linkUrls, activeIndex, setActiveIndex }}
       >
         {header}
         {children}

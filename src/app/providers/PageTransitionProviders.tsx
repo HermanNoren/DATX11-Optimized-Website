@@ -36,20 +36,16 @@ export default function PageTransitionProviders({
         gsap.set(transitionContainer.current, { zIndex: "999" });
         toRef.current = to;
 
-        const tl = gsap
-          .timeline({
-            onComplete: next,
-          })
-          .fromTo(
-            "#pageTransitionDiv1",
-            { y: "105%" },
-            {
-              y: "0%",
-              duration: duration,
-              stagger: stagger,
-              ease: ease,
-            }
-          );
+        const tl = gsap.timeline().fromTo(
+          "#pageTransitionDiv1",
+          { y: "105%" },
+          {
+            y: "0%",
+            duration: duration,
+            stagger: stagger,
+            ease: ease,
+          }
+        );
 
         const tl2 = gsap.timeline().fromTo(
           "#pageTransitionDiv0",
@@ -86,17 +82,21 @@ export default function PageTransitionProviders({
 
         gsap.set(textDiv, { opacity: 1, y: "0%" });
 
-        const tl3 = gsap.timeline().fromTo(
-          ".pageTransitionTitleChar",
-          { y: "105%" },
-          {
-            y: "0%",
-            duration: 0.5,
-            stagger: 0.02,
-            ease: ease,
-            delay: 0.2,
-          }
-        );
+        const tl3 = gsap
+          .timeline({
+            onComplete: next,
+          })
+          .fromTo(
+            ".pageTransitionTitleChar",
+            { y: "105%" },
+            {
+              y: "0%",
+              duration: 0.5,
+              stagger: 0.02,
+              ease: ease,
+              delay: 0.2,
+            }
+          );
 
         return () => {
           tl.kill();
